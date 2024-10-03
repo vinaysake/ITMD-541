@@ -10,4 +10,4 @@ function minMaxAverage(numbers) {
   minMaxAverage([2, 5, 23, 6, 9, 4, 30, 1]);
   
   // Additional test
-  minMaxAverage([10, 20, 30, 40, 50]);
+  minMaxAverage([10, 20, 30, 40, 50]);x
