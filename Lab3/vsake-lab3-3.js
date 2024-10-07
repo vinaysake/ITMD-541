@@ -1,12 +1,22 @@
+// Function to sort an array of numbers in ascending order
 function sortNumbers(numbers) {
-    return numbers.slice().sort((a, b) => a - b);
-  }
+  // Make a copy of the array using slice() to avoid mutating the original array
+  const sortedArray = numbers.slice().sort((a, b) => a - b);
   
-  // Test arrays
-  const test1 = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
-  const test2 = [10, 2, 8, 4, 6];
-  const test3 = [-5, 0, 5, -10, 10];
+  // Log the original array before sorting
+  console.log(`Original Array: [${numbers}]`);
   
-  console.log(`Original Array: ${test1}\nSorted Array: ${sortNumbers(test1)}`);
-  console.log(`Original Array: ${test2}\nSorted Array: ${sortNumbers(test2)}`);
-  console.log(`Original Array: ${test3}\nSorted Array: ${sortNumbers(test3)}`);
+  // Log the sorted array after sorting
+  console.log(`Sorted Array: [${sortedArray}]\n`);  // Add a newline for spacing
+}
+
+// Test the function with three different arrays
+
+// Example 1: Sorting [5, 2, 9, 1, 7, 4]
+sortNumbers([5, 2, 9, 1, 7, 4]);
+
+// Example 2: Sorting [15, 10, 25, 20, 5]
+sortNumbers([15, 10, 25, 20, 5]);
+
+// Example 3: Sorting [42, 32, 23, 12, 7]
+sortNumbers([42, 32, 23, 12, 7]);
