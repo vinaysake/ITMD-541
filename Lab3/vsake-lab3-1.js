@@ -24,3 +24,6 @@ minMaxAverage([10, 20, 30, 40, 50]);  // Another test array
 
 // Additional test case 2 for validation
 minMaxAverage([3, 12, 45, 7, 18]);  // Another test array
+
+// Additional test case 3 for validation
+minMaxAverage([3, 1, 9, 45, 7, 8]);  // Another test array
