@@ -14,7 +14,7 @@ function sortPeopleByAge(people) {
 
 // Test array 1: Updated array of people objects with at least 5 entries
 const people1 = [
-    {name: 'Suprreth', age: 30, city: 'New York'},
+    {name: 'Supreeth', age: 30, city: 'New York'},
     {name: 'Vinay', age: 25, city: 'Chicago'},
     {name: 'Shaheed', age: 35, city: 'San Francisco'},
     {name: 'Raghav', age: 28, city: 'Seattle'},
