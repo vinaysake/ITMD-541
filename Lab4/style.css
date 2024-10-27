@@ -1,5 +1,5 @@
 * {
-    box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+    box-sizing: border-box;
 }
 
 body {
@@ -9,30 +9,31 @@ body {
 }
 
 nav {
-    background-color: #6495ed; /* Matches footer color */
+    background-color: #6495ed;
     padding: 10px;
     color: white;
     text-align: center;
 }
 
 .hero {
-    background-image: url('https://picsum.photos/id/683/1280/720');
+    background-image: url('https://picsum.photos/id/683/1280/720'); /* Hero background image */
     background-size: cover;
+    background-position: center; /* Center the background image */
     padding: 50px 20px;
     text-align: center;
     color: white;
 }
 
 .hero h1 {
-    margin: 0; /* Removes default margin */
+    margin: 0;
 }
 
 .hero p {
-    margin: 10px 0; /* Adds margin for better spacing */
+    margin: 10px 0;
 }
 
 .cta-container {
-    margin-top: 20px; /* Space above the button */
+    margin-top: 20px;
 }
 
 .services, .specialized-marketing-solutions {
@@ -60,13 +61,11 @@ nav {
 }
 
 footer {
-    background-color: #6495ed; /* Same color as nav bar */
+    background-color: #6495ed; /* Matches nav bar */
     color: white;
     text-align: center;
     padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%; /* Ensures footer stretches across the bottom */
+    width: 100%; /* Full width footer */
 }
 
 form {
@@ -75,21 +74,21 @@ form {
 }
 
 form input {
-    display: block; /* Makes inputs stack vertically */
-    margin: 10px auto; /* Centers the inputs */
+    display: block;
+    margin: 10px auto;
     padding: 10px;
-    width: 80%; /* Sets a consistent width */
+    width: 80%; /* Consistent input width */
     max-width: 300px; /* Maximum width for inputs */
 }
 
 form button {
     padding: 10px 20px;
-    background-color: #6495ed; /* Matches button color */
+    background-color: #6495ed; /* Button color */
     color: white;
     border: none;
     cursor: pointer;
 }
 
 form button:hover {
-    background-color: #007bb5; /* Darker shade on hover */
+    background-color: #007bb5; /* Darker on hover */
 }
