@@ -9,7 +9,7 @@ body {
 }
 
 nav {
-    background-color: #6495ed;
+    background-color: #6495ed; /* Background color of the nav bar */
     padding: 10px;
     color: white;
     text-align: center;
@@ -17,7 +17,7 @@ nav {
 
 .hero {
     background-image: url('https://picsum.photos/id/683/1280/720'); /* Hero background image */
-    background-size: cover;
+    background-size: cover; /* Cover the entire area */
     background-position: center; /* Center the background image */
     padding: 50px 20px;
     text-align: center;
@@ -26,14 +26,32 @@ nav {
 
 .hero h1 {
     margin: 0;
+    font-size: 2.5em; /* Adjust headline font size if needed */
 }
 
 .hero p {
     margin: 10px 0;
+    font-size: 1.2em; /* Adjust text size if needed */
 }
 
 .cta-container {
     margin-top: 20px;
+}
+
+.full-width-section {
+    background-color: #6495ed; /* Light blue background */
+    padding: 32px 0; /* 32px space above and below */
+    text-align: center; /* Center text in section */
+}
+
+.cta-button {
+    background-color: white; /* White background for button */
+    color: #6495ed; /* Blue text */
+    padding: 10px 20px; /* Button padding */
+    border: 4px solid #6495ed; /* 4px blue border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Minor drop shadow */
+    cursor: pointer; /* Change cursor to pointer */
 }
 
 .services, .specialized-marketing-solutions {
@@ -50,12 +68,12 @@ nav {
 .specialized-marketing-solutions {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; /* Center content */
 }
 
 .solution-tile {
     margin: 10px;
-    border: 1px solid #6495ed;
+    border: 1px solid #6495ed; /* Border color */
     padding: 10px;
     text-align: center;
 }
@@ -79,16 +97,4 @@ form input {
     padding: 10px;
     width: 80%; /* Consistent input width */
     max-width: 300px; /* Maximum width for inputs */
-}
-
-form button {
-    padding: 10px 20px;
-    background-color: #6495ed; /* Button color */
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #007bb5; /* Darker on hover */
 }
