@@ -6,102 +6,100 @@
     <title>Stellar Marketing</title>
     <!-- Google Material Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <!-- Your CSS file link would go here -->
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#solutions">Solutions</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+    <nav class="navigation">
+        <div class="nav-container">
+            <ul class="nav-list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Solutions</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <h1>Supercharge Your Brand with Stellar Marketing</h1>
-        <p>Leverage <i>innovative</i> strategies from <b>Stellar Marketing</b> to make your business shine and succeed.</p>
-    </section>
-
-    <!-- New CTA Section (Added per requirements) -->
-    <section class="cta-section">
-        <button class="cta-button">Get Started</button>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Marketing Excellence</h1>
+            <p class="hero-text">Transform your business with expert marketing solutions</p>
+            <button class="cta-button">Get Started</button>
+        </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="services">
-        <h2>Our Services</h2>
-        <ul>
-            <li>
-                <span class="material-symbols-outlined">ads_click</span>
-                <h3>Digital Marketing</h3>
-                <p>Strategic online marketing solutions to boost your brand's digital presence</p>
-            </li>
-            <li>
-                <span class="material-symbols-outlined">trending_up</span>
-                <h3>SEO Optimization</h3>
-                <p>Improve your search rankings and drive organic traffic</p>
-            </li>
-            <li>
-                <span class="material-symbols-outlined">share</span>
-                <h3>Social Media</h3>
-                <p>Engage with your audience and build lasting relationships</p>
-            </li>
-            <li>
-                <span class="material-symbols-outlined">analytics</span>
-                <h3>Analytics</h3>
-                <p>Data-driven insights to optimize your marketing strategy</p>
-            </li>
-        </ul>
+    <section class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="material-symbols-outlined service-icon">campaign</span>
+                    <h3>Digital Marketing</h3>
+                    <p>Strategic online marketing solutions</p>
+                </div>
+                <div class="service-card">
+                    <span class="material-symbols-outlined service-icon">trending_up</span>
+                    <h3>SEO Optimization</h3>
+                    <p>Improve your search rankings</p>
+                </div>
+                <div class="service-card">
+                    <span class="material-symbols-outlined service-icon">share</span>
+                    <h3>Social Media</h3>
+                    <p>Engage with your audience</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Specialized Solutions Section -->
-    <section class="specialized-solutions" id="solutions">
-        <h2>Specialized Marketing Solutions</h2>
-        <div class="grid">
-            <div class="grid-item">
-                <img src="https://picsum.photos/id/453/400/300" alt="Musicians Marketing">
-                <h3>Musicians</h3>
-                <p>Promote your music effectively</p>
-            </div>
-            <div class="grid-item">
-                <img src="https://picsum.photos/id/684/400/300" alt="Small Business Marketing">
-                <h3>Small Business</h3>
-                <p>Grow your local presence</p>
-            </div>
-            <div class="grid-item">
-                <img src="https://picsum.photos/id/685/400/300" alt="E-commerce Marketing">
-                <h3>E-commerce</h3>
-                <p>Boost your online sales</p>
-            </div>
-            <div class="grid-item">
-                <img src="https://picsum.photos/id/686/400/300" alt="Tech Startups Marketing">
-                <h3>Tech Startups</h3>
-                <p>Scale your tech business</p>
+    <!-- Solutions Section -->
+    <section class="solutions">
+        <div class="container">
+            <h2>Specialized Marketing Solutions</h2>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <img src="https://picsum.photos/id/453/400/300" alt="Musicians">
+                    <h3>Musicians</h3>
+                    <p>Promote your music effectively</p>
+                </div>
+                <div class="solution-card">
+                    <img src="path-to-image" alt="Small Business">
+                    <h3>Small Business</h3>
+                    <p>Grow your local presence</p>
+                </div>
+                <div class="solution-card">
+                    <img src="path-to-image" alt="E-commerce">
+                    <h3>E-commerce</h3>
+                    <p>Boost your online sales</p>
+                </div>
+                <div class="solution-card">
+                    <img src="path-to-image" alt="Tech Startups">
+                    <h3>Tech Startups</h3>
+                    <p>Scale your tech business</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <h2>Contact Us</h2>
-        <form action="contact.html" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
+    <section class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Stellar Marketing. All rights reserved.</p>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Stellar Marketing. All rights reserved.</p>
+        </div>
     </footer>
-
-    <!-- Your JavaScript file would go here -->
-    <script src="script.js"></script>
 </body>
 </html>
