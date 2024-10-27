@@ -1,198 +1,94 @@
-/* Base styles */
+/* Basic reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body styling */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Navigation */
-.navigation {
-    background-color: #333;
-    padding: 1rem 0;
-}
-
-.nav-list {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    list-style: none;
-}
-
-.nav-list a {
-    color: white;
-    text-decoration: none;
-}
-
-/* Hero Section */
+/* Hero Section Styling */
 .hero {
-    background-image: url('https://picsum.photos/id/683/1280/720');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
-    padding: 6rem 0;
-    position: relative;
+    background-color: #f8f8f8; /* Background color for hero area */
+    padding: 20px; /* Padding for hero */
+    text-align: center; /* Center align text */
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+/* New Section Styling */
+.new-section {
+    background-color: #6495ed; /* Light blue background */
+    text-align: center; /* Center the text inside the section */
+    padding: 32px 0; /* 32px padding above and below */
 }
 
-.hero-content {
-    position: relative;
-    z-index: 1;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-}
-
-.hero-text {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-/* CTA Section */
-.cta-section {
-    background-color: #6495ed;
-    padding: 32px 0;
-    text-align: center;
-}
-
+/* CTA Button Styling */
 .cta-button {
-    background-color: white;
-    color: #6495ed;
-    border: 4px solid #6495ed;
-    padding: 16px 32px;
-    font-size: 1.25rem;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white; /* White background for the button */
+    color: blue; /* Blue text color */
+    border: 4px solid blue; /* 4px blue border */
+    padding: 10px 20px; /* Button padding */
+    font-size: 16px; /* Size of button text */
+    font-weight: bold; /* Bold text for the button */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Minor drop shadow for depth */
 }
 
-/* Services Section */
-.services {
-    padding: 4rem 0;
+/* Hover effect for CTA Button */
+.cta-button:hover {
+    background-color: #f0f0f0; /* Slight change on hover */
 }
 
-.services h2 {
-    text-align: center;
-    margin-bottom: 3rem;
+/* Services Section Icon Color */
+.services .icon {
+    color: #6495ed; /* Change the icon color */
 }
 
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+/* Specialized Marketing Solutions Layout for Larger Screens */
+.specialized-marketing-solutions {
+    display: grid; /* Use grid layout by default */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns by default */
 }
 
-.service-card {
-    text-align: center;
-    padding: 2rem;
+.specialized-marketing-solutions .tile {
+    padding: 10px;
 }
 
-.service-icon {
-    color: #6495ed;
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-/* Solutions Section */
-.solutions {
-    background-color: #f5f5f5;
-    padding: 4rem 0;
-}
-
-.solutions h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.solutions-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-}
-
+/* Responsive Layout Adjustment */
 @media (min-width: 1024px) {
-    .solutions-grid {
-        grid-template-columns: repeat(4, 1fr);
+    .specialized-marketing-solutions {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns on wider screens */
     }
 }
 
-.solution-card {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Form Styling */
+form {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc; /* Border around the form */
+    border-radius: 5px; /* Rounded corners for the form */
 }
 
-.solution-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+/* Individual Input Styling */
+input[type="text"], input[type="email"] {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%; /* Full width inputs */
 }
 
-.solution-card h3,
-.solution-card p {
-    padding: 1rem;
+button[type="submit"] {
+    padding: 10px 15px; /* Submit button padding */
+    background-color: #6495ed; /* Match the theme */
+    color: white; /* White text on button */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor on hover */
 }
 
-/* Contact Form */
-.contact {
-    padding: 4rem 0;
-}
-
-.contact h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.contact-form {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.contact-form input,
-.contact-form textarea {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.contact-form button {
-    background-color: #6495ed;
-    color: white;
-    padding: 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Footer */
-.footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 2rem 0;
+/* Hover effect for submit button */
+button[type="submit"]:hover {
+    background-color: #5a8cd7; /* Darker blue on hover */
 }
