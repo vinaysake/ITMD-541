@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -17,6 +21,18 @@ nav {
     padding: 50px 20px;
     text-align: center;
     color: white;
+}
+
+.hero h1 {
+    margin: 0; /* Removes default margin */
+}
+
+.hero p {
+    margin: 10px 0; /* Adds margin for better spacing */
+}
+
+.cta-container {
+    margin-top: 20px; /* Space above the button */
 }
 
 .services, .specialized-marketing-solutions {
@@ -48,9 +64,32 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%; /* Ensures footer stretches across the bottom */
 }
 
 form {
     padding: 20px;
     text-align: center;
+}
+
+form input {
+    display: block; /* Makes inputs stack vertically */
+    margin: 10px auto; /* Centers the inputs */
+    padding: 10px;
+    width: 80%; /* Sets a consistent width */
+    max-width: 300px; /* Maximum width for inputs */
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #6495ed; /* Matches button color */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #007bb5; /* Darker shade on hover */
 }
