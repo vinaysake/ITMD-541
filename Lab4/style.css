@@ -1,0 +1,50 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar Styling */
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+nav ul {
+    list-style-type: none;
+}
+nav li {
+    display: inline;
+    margin: 0 1em;
+}
+
+/* Hero Section */
+.hero {
+    padding: 50px;
+    text-align: center;
+    background-color: #eee;
+}
+
+/* Services Section */
+.services .service-icon {
+    display: inline-block;
+    padding: 20px;
+    color: #333;
+}
+
+/* Specialized Marketing Solutions */
+.specialized-marketing .solution-tile {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: #ddd;
+}
+
+/* Contact Form */
+.contact-form {
+    margin: 20px;
+    text-align: center;
+}
