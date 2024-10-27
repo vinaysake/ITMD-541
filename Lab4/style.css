@@ -1,50 +1,64 @@
+/* style.css */
+
 /* Basic Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/* Navbar Styling */
-nav {
-    background-color: #333;
-    color: #fff;
-    padding: 1em;
-    text-align: center;
-}
-nav ul {
-    list-style-type: none;
-}
-nav li {
-    display: inline;
-    margin: 0 1em;
-}
-
-/* Hero Section */
-.hero {
-    padding: 50px;
-    text-align: center;
-    background-color: #eee;
-}
-
-/* Services Section */
-.services .service-icon {
-    display: inline-block;
-    padding: 20px;
-    color: #333;
-}
-
-/* Specialized Marketing Solutions */
-.specialized-marketing .solution-tile {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    background-color: #ddd;
-}
-
-/* Contact Form */
-.contact-form {
-    margin: 20px;
-    text-align: center;
-}
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8; /* Light background color */
+    color: #333; /* Dark text color for readability */
+    text-align: center; /* Center text */
+    margin: 0; /* Remove default margin */
+  }
+  
+  header {
+    background-color: #6495ed; /* Header background color */
+    color: white; /* Header text color */
+    padding: 20px; /* Padding around the header */
+  }
+  
+  #location-input {
+    margin: 20px auto; /* Centering the input section */
+    padding: 10px; /* Padding for the input section */
+  }
+  
+  #location-select, #search-location, #current-location, #search-button {
+    padding: 8px 12px; /* Padding for the inputs and buttons */
+    margin: 5px; /* Margin for spacing between elements */
+  }
+  
+  .card-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center the cards */
+    gap: 20px; /* Space between cards */
+    margin: 20px auto; /* Center the container */
+    padding: 20px; /* Padding around the container */
+  }
+  
+  .weather-card {
+    background-color: white; /* Card background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    padding: 20px; /* Padding inside the card */
+    border-radius: 8px; /* Rounded corners */
+    width: 300px; /* Fixed width for cards */
+  }
+  
+  #initial-image {
+    display: block; /* Make the image a block element */
+    max-width: 50%; /* Limit image width */
+    margin: 20px auto; /* Center the image with margin */
+    height: auto; /* Maintain aspect ratio */
+    background-color: white; /* Background for the image */
+  }
+  
+  footer {
+    background-color: #333; /* Footer background color */
+    color: #fff; /* Footer text color */
+    padding: 10px; /* Padding for the footer */
+    font-size: 14px; /* Smaller font size for footer */
+  }
+  
