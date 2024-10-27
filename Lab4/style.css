@@ -1,73 +1,56 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4; /* Light background color */
-    color: #333; /* Dark text color */
+    margin: 0;
+    padding: 0;
 }
 
-/* Header Styles */
-header {
-    background: #007BFF; /* Bootstrap primary color */
+nav {
+    background-color: #6495ed; /* Matches footer color */
+    padding: 10px;
     color: white;
-    padding: 10px 20px;
     text-align: center;
 }
 
-/* Navigation Styles */
-nav {
-    background: #333;
+.hero {
+    background-image: url('https://picsum.photos/id/683/1280/720');
+    background-size: cover;
+    padding: 50px 20px;
+    text-align: center;
+    color: white;
 }
 
-nav ul {
-    list-style: none;
-    padding: 10px;
+.services, .specialized-marketing-solutions {
+    padding: 20px;
+    text-align: center;
+}
+
+.service-icon {
+    display: inline-block;
+    margin: 10px;
+    color: #6495ed; /* Change icon color */
+}
+
+.specialized-marketing-solutions {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-/* Main Content Styles */
-main {
-    padding: 20px;
-}
-
-section {
-    background: white;
-    margin: 20px 0;
-    padding: 15px;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-/* Footer Styles */
-footer {
+.solution-tile {
+    margin: 10px;
+    border: 1px solid #6495ed;
+    padding: 10px;
     text-align: center;
-    padding: 10px 0;
-    background: #333;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    nav ul {
-        flex-direction: column;
-    }
+footer {
+    background-color: #6495ed; /* Same color as nav bar */
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+form {
+    padding: 20px;
+    text-align: center;
 }

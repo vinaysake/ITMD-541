@@ -3,43 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+    <title>Stellar Marketing</title>
 </head>
 <body>
-    <header>
-        <h1>Your Main Title Here</h1>
-    </header>
-
     <nav>
-        <ul>
-            <li><a href="#section1">Section 1</a></li>
-            <li><a href="#section2">Section 2</a></li>
-            <li><a href="#section3">Section 3</a></li>
-        </ul>
+        <h1>Stellar Marketing</h1>
     </nav>
-
-    <main>
-        <section id="section1">
-            <h2>Section 1 Title</h2>
-            <p>Your content for section 1 goes here.</p>
-        </section>
-
-        <section id="section2">
-            <h2>Section 2 Title</h2>
-            <p>Your content for section 2 goes here.</p>
-        </section>
-
-        <section id="section3">
-            <h2>Section 3 Title</h2>
-            <p>Your content for section 3 goes here.</p>
-        </section>
-    </main>
-
+    <section class="hero">
+        <h1>Original Headline</h1>
+        <p>Original subheadline text.</p>
+        <div class="cta-container">
+            <button class="cta-button">Get Started</button>
+        </div>
+    </section>
+    <section class="services">
+        <h2>Our Services</h2>
+        <div class="service-icon" data-icon="digital-marketing">
+            <span class="material-icons-outlined">ads_click</span>
+            <p>Digital Marketing</p>
+        </div>
+        <!-- Add other services here -->
+    </section>
+    <section class="specialized-marketing-solutions">
+        <h2>Specialized Marketing Solutions</h2>
+        <div class="solution-tile">
+            <img data-id="musicians" src="https://picsum.photos/id/456/400/300" alt="Musicians">
+            <p>Musicians</p>
+        </div>
+        <!-- Add more tiles here -->
+    </section>
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+        <button type="submit">Submit</button>
+    </form>
     <footer>
-        <p>© 2024 Your Name or Company</p>
+        <p>&copy; 2024 Stellar Marketing</p>
     </footer>
-
-    <script src="main.js"></script>
+    <script src="userId-lab4.js"></script>
 </body>
 </html>
