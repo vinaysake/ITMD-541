@@ -3,47 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
     <title>Stellar Marketing</title>
+    <!-- Google Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <!-- Your CSS file link would go here -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
-        <h1>Stellar Marketing</h1>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
-    <section class="hero">
-        <h1>Original Headline</h1>
-        <p>Original subheadline text.</p>
-        <div class="cta-container">
-            <button class="cta-button">Get Started</button>
-        </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Supercharge Your Brand with Stellar Marketing</h1>
+        <p>Leverage <i>innovative</i> strategies from <b>Stellar Marketing</b> to make your business shine and succeed.</p>
     </section>
-    <section class="services">
+
+    <!-- New CTA Section (Added per requirements) -->
+    <section class="cta-section">
+        <button class="cta-button">Get Started</button>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
         <h2>Our Services</h2>
-        <div class="service-icon" data-icon="digital-marketing">
-            <span class="material-icons-outlined">ads_click</span>
-            <p>Digital Marketing</p>
-        </div>
-        <!-- Add other services here -->
+        <ul>
+            <li>
+                <span class="material-symbols-outlined">ads_click</span>
+                <h3>Digital Marketing</h3>
+                <p>Strategic online marketing solutions to boost your brand's digital presence</p>
+            </li>
+            <li>
+                <span class="material-symbols-outlined">trending_up</span>
+                <h3>SEO Optimization</h3>
+                <p>Improve your search rankings and drive organic traffic</p>
+            </li>
+            <li>
+                <span class="material-symbols-outlined">share</span>
+                <h3>Social Media</h3>
+                <p>Engage with your audience and build lasting relationships</p>
+            </li>
+            <li>
+                <span class="material-symbols-outlined">analytics</span>
+                <h3>Analytics</h3>
+                <p>Data-driven insights to optimize your marketing strategy</p>
+            </li>
+        </ul>
     </section>
-    <section class="specialized-marketing-solutions">
+
+    <!-- Specialized Solutions Section -->
+    <section class="specialized-solutions" id="solutions">
         <h2>Specialized Marketing Solutions</h2>
-        <div class="solution-tile">
-            <img data-id="musicians" src="https://picsum.photos/id/456/400/300" alt="Musicians">
-            <p>Musicians</p>
+        <div class="grid">
+            <div class="grid-item">
+                <img src="https://picsum.photos/id/453/400/300" alt="Musicians Marketing">
+                <h3>Musicians</h3>
+                <p>Promote your music effectively</p>
+            </div>
+            <div class="grid-item">
+                <img src="https://picsum.photos/id/684/400/300" alt="Small Business Marketing">
+                <h3>Small Business</h3>
+                <p>Grow your local presence</p>
+            </div>
+            <div class="grid-item">
+                <img src="https://picsum.photos/id/685/400/300" alt="E-commerce Marketing">
+                <h3>E-commerce</h3>
+                <p>Boost your online sales</p>
+            </div>
+            <div class="grid-item">
+                <img src="https://picsum.photos/id/686/400/300" alt="Tech Startups Marketing">
+                <h3>Tech Startups</h3>
+                <p>Scale your tech business</p>
+            </div>
         </div>
-        <!-- Add more tiles here -->
     </section>
-    <form>
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" required>
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required>
-        <button type="submit">Submit</button>
-    </form>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <form action="contact.html" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Stellar Marketing</p>
+        <p>&copy; 2024 Stellar Marketing. All rights reserved.</p>
     </footer>
-    <script src="userId-lab4.js"></script>
+
+    <!-- Your JavaScript file would go here -->
+    <script src="script.js"></script>
 </body>
 </html>
