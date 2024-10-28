@@ -80,15 +80,19 @@
         form.addEventListener('submit', (event) => {
             event.preventDefault(); // Prevent default form submission to a broken URL
 
+            // Select input fields by name attributes
             const nameInput = document.querySelector('input[name="name"]');
             const emailInput = document.querySelector('input[name="email"]');
 
+            // Check if name and email inputs exist and retrieve their values
             const name = nameInput ? nameInput.value.trim() : "";
             const email = emailInput ? emailInput.value.trim() : "";
 
             if (name && email) {
+                // Display success alert with name and email from the form
                 alert(`Thank you, ${name}! We will be in touch with you shortly at ${email}.`);
             } else {
+                // Display error alert if name or email is missing
                 alert("Please provide a name and email.");
             }
         });
