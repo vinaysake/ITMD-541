@@ -1,16 +1,33 @@
 (function() {
+    // Center content helper function
+    function centerElement(element) {
+        element.style.display = "flex";
+        element.style.justifyContent = "center";
+        element.style.alignItems = "center";
+        element.style.flexDirection = "column";
+        element.style.textAlign = "center";
+    }
+
     // Update main headline text
-    document.querySelector('.hero h1').innerText = "Supercharge Your Brand with Stellar Marketing";
+    const heroHeadline = document.querySelector('.hero h1');
+    if (heroHeadline) {
+        heroHeadline.innerText = "Supercharge Your Brand with Stellar Marketing";
+    }
 
     // Update sub-headline text with bold and italic
-    document.querySelector('.hero p').innerHTML = "<b><i>Leverage innovative strategies from Stellar Marketing to make your business shine and succeed.</i></b>";
+    const heroSubHeadline = document.querySelector('.hero p');
+    if (heroSubHeadline) {
+        heroSubHeadline.innerHTML = "<b><i>Leverage innovative strategies from Stellar Marketing to make your business shine and succeed.</i></b>";
+    }
 
     // Update the hero section background image
     const heroSection = document.querySelector('.hero');
-    heroSection.style.backgroundImage = "url('https://picsum.photos/id/683/1280/720')";
-    heroSection.style.backgroundSize = "cover";
-    heroSection.style.backgroundPosition = "center";
-    heroSection.style.backgroundRepeat = "no-repeat";
+    if (heroSection) {
+        heroSection.style.backgroundImage = "url('https://picsum.photos/id/683/1280/720')";
+        heroSection.style.backgroundSize = "cover";
+        heroSection.style.backgroundPosition = "center";
+        heroSection.style.backgroundRepeat = "no-repeat";
+    }
 
     // Change the navbar background color to match the footer
     const navbar = document.querySelector('nav');
@@ -20,7 +37,7 @@
     }
 
     // Remove the "Get Started" CTA button in the hero section
-    const ctaButton = document.querySelector('.hero .cta-button'); // Adjust selector if necessary
+    const ctaButton = document.querySelector('.hero .cta-button');
     if (ctaButton) {
         ctaButton.remove();
     }
@@ -30,7 +47,7 @@
     newSection.style.width = "100%";
     newSection.style.backgroundColor = "#6495ed";
     newSection.style.padding = "32px 0";
-    newSection.style.textAlign = "center";
+    centerElement(newSection); // Center the content
 
     const newCTAButton = document.createElement('button');
     newCTAButton.innerText = "Learn More";
@@ -55,7 +72,7 @@
     });
 
     // Update the digital marketing icon to 'Ads Click'
-    const digitalMarketingIcon = document.querySelector('.services .digital-marketing-icon'); // Adjust selector if needed
+    const digitalMarketingIcon = document.querySelector('.services .digital-marketing-icon');
     if (digitalMarketingIcon) {
         digitalMarketingIcon.innerText = "ads_click";
     }
