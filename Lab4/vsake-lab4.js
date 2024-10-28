@@ -1,63 +1,96 @@
 (function() {
-    // Step 1: Change the main headline text in the hero section
-    document.querySelector("#hero h1").textContent = "Supercharge Your Brand with Stellar Marketing";
+    // Update main headline text
+    document.querySelector('.hero h1').innerText = "Supercharge Your Brand with Stellar Marketing";
 
-    // Step 2: Change the sub-headline text below the main headline
-    document.querySelector("#hero p").innerHTML = "<b><i>Leverage innovative strategies from Stellar Marketing to make your business shine and succeed.</i></b>";
+    // Update sub-headline text with bold and italic
+    document.querySelector('.hero p').innerHTML = "<b><i>Leverage innovative strategies from Stellar Marketing to make your business shine and succeed.</i></b>";
 
-    // Step 3: Change the background image of the hero section
-    document.querySelector("#hero").style.backgroundImage = "url('https://picsum.photos/id/683/1280/720')";
+    // Update the hero section background image
+    const heroSection = document.querySelector('.hero');
+    heroSection.style.backgroundImage = "url('https://picsum.photos/id/683/1280/720')";
+    heroSection.style.backgroundSize = "cover";
+    heroSection.style.backgroundPosition = "center";
+    heroSection.style.backgroundRepeat = "no-repeat";
 
-    // Step 4: Change the background color of the navbar to match the footer
-    const footerColor = window.getComputedStyle(document.querySelector("#footer")).backgroundColor;
-    document.querySelector("#navbar").style.backgroundColor = footerColor;
+    // Change the navbar background color to match the footer
+    const navbar = document.querySelector('nav');
+    const footer = document.querySelector('footer');
+    if (footer && navbar) {
+        navbar.style.backgroundColor = window.getComputedStyle(footer).backgroundColor;
+    }
 
-    // Step 5: Remove the "Get Started" CTA button
-    const ctaButton = document.querySelector("#hero .cta-button");
-    if (ctaButton) ctaButton.remove();
+    // Remove the "Get Started" CTA button in the hero section
+    const ctaButton = document.querySelector('.hero .cta-button'); // Adjust selector if necessary
+    if (ctaButton) {
+        ctaButton.remove();
+    }
 
-    // Step 6: Add a new section below the hero with a CTA button
-    const newSection = document.createElement("section");
-    newSection.className = "new-section";
+    // Add a new full-width section with CTA below the hero
+    const newSection = document.createElement('section');
     newSection.style.width = "100%";
-    newSection.innerHTML = `
-        <button class="cta-button" style="background-color: white; color: #6495ed; border: 4px solid #6495ed; padding: 10px 20px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);">
-            Learn More
-        </button>
-    `;
-    newSection.querySelector(".cta-button").onclick = () => alert("Thank You for your interest in Stellar Marketing!");
-    document.querySelector("#hero").insertAdjacentElement("afterend", newSection);
+    newSection.style.backgroundColor = "#6495ed";
+    newSection.style.padding = "32px 0";
+    newSection.style.textAlign = "center";
 
-    // Step 7: Change icons color in the services section
-    document.querySelectorAll("#services .material-icons-outlined").forEach(icon => {
+    const newCTAButton = document.createElement('button');
+    newCTAButton.innerText = "Learn More";
+    newCTAButton.style.backgroundColor = "#ffffff";
+    newCTAButton.style.color = "#6495ed";
+    newCTAButton.style.border = "4px solid #6495ed";
+    newCTAButton.style.padding = "10px 20px";
+    newCTAButton.style.fontSize = "16px";
+    newCTAButton.style.cursor = "pointer";
+    newCTAButton.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
+    newCTAButton.addEventListener('click', () => {
+        alert("Thank You for your interest in Stellar Marketing!");
+    });
+
+    newSection.appendChild(newCTAButton);
+    heroSection.insertAdjacentElement('afterend', newSection);
+
+    // Change the color of icons in the services section
+    const icons = document.querySelectorAll('.services .material-icons-outlined');
+    icons.forEach(icon => {
         icon.style.color = "#6495ed";
     });
 
-    // Step 8: Change the digital marketing icon to 'Ads Click'
-    const digitalMarketingIcon = document.querySelector("#services .material-icons-outlined");
-    if (digitalMarketingIcon) digitalMarketingIcon.textContent = "ads_click";
-
-    // Step 9: Modify layout for the specialized marketing solutions section for screens >=1024px
-    const solutionsSection = document.querySelector("#solutions");
-    if (solutionsSection) {
-        solutionsSection.style.display = "grid";
-        solutionsSection.style.gridTemplateColumns = "repeat(4, 1fr)";
+    // Update the digital marketing icon to 'Ads Click'
+    const digitalMarketingIcon = document.querySelector('.services .digital-marketing-icon'); // Adjust selector if needed
+    if (digitalMarketingIcon) {
+        digitalMarketingIcon.innerText = "ads_click";
     }
 
-    // Step 10: Change the Musicians image in the specialized marketing solutions section
-    const musiciansImage = document.querySelector("#solutions img");
-    if (musiciansImage) musiciansImage.src = "https://picsum.photos/id/453/400/300";
+    // Adjust layout in the specialized marketing solutions section for larger screens
+    const specializedSolutionsSection = document.querySelector('.specialized-solutions');
+    if (specializedSolutionsSection) {
+        specializedSolutionsSection.style.display = "grid";
+        specializedSolutionsSection.style.gridTemplateColumns = "repeat(auto-fit, minmax(200px, 1fr))";
+        specializedSolutionsSection.style.gap = "20px";
+    }
 
-    // Step 11: Prevent form submission to a broken URL and add validation for name and email fields
-    document.querySelector("#contact-form").onsubmit = function(event) {
-        event.preventDefault(); // Prevent actual form submission
-        const name = document.querySelector("#name").value;
-        const email = document.querySelector("#email").value;
+    // Change the Musicians image
+    const musiciansImage = document.querySelector('.specialized-solutions .musicians img');
+    if (musiciansImage) {
+        musiciansImage.src = "https://picsum.photos/id/453/400/300";
+    }
 
-        if (name && email) {
-            alert(`Thank you, ${name}! We will be in touch with you shortly at ${email}.`);
-        } else {
-            alert("Please provide a name and email.");
-        }
-    };
+    // Form submission changes (for graduate requirements)
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission to a broken URL
+
+            const nameInput = document.querySelector('input[name="name"]');
+            const emailInput = document.querySelector('input[name="email"]');
+
+            const name = nameInput ? nameInput.value.trim() : "";
+            const email = emailInput ? emailInput.value.trim() : "";
+
+            if (name && email) {
+                alert(`Thank you, ${name}! We will be in touch with you shortly at ${email}.`);
+            } else {
+                alert("Please provide a name and email.");
+            }
+        });
+    }
 })();
