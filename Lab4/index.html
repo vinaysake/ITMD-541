@@ -3,50 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-    <title>Lab 4 - ITMD 441/541</title>
+    <title>Lab 4</title>
 </head>
 <body>
-
-    <div class="hero">
-        <h1>Your Existing Hero Headline</h1> <!-- Replace this with your existing headline -->
-        <p>Your existing hero subtitle goes here.</p> <!-- Replace this with your existing subtitle -->
-        <div class="cta"> <!-- Your existing CTA -->
-            <button>Get Started</button>
-        </div>
-    </div>
-
-    <!-- New Full-Width Section -->
-    <div class="new-section">
-        <button id="newCTA" class="cta-button">New Call to Action</button>
-    </div>
-
-    <div class="services">
-        <h2>Our Services</h2>
-        <div class="icon">Service Icon 1</div>
-        <div class="icon digitamarketing">Digital Marketing Icon</div>
-        <div class="icon">Service Icon 3</div>
-        <div class="icon">Service Icon 4</div>
-    </div>
-
-    <div class="specialized-marketing-solutions">
-        <h2>Specialized Marketing Solutions</h2>
-        <div class="tile musicians">
-            <img src="musicians-image-url" alt="Musicians">
-        </div>
-        <!-- Add more tiles as necessary -->
-    </div>
-
-    <form id="contactForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-        
-        <button type="submit">Submit</button>
-    </form>
-
-    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+    <header id="navbar">Navigation Bar</header>
+    <section id="hero">
+        <h1>Original Hero Headline</h1>
+        <p>Original Hero Subtext</p>
+        <button class="cta-button">Get Started</button>
+    </section>
+    <section id="services">
+        <span class="material-icons-outlined">digital marketing icon</span>
+    </section>
+    <section id="solutions">
+        <img src="https://picsum.photos/400/300" alt="Musicians Image">
+    </section>
+    <footer id="footer">Footer</footer>
+    <section id="contact">
+        <form id="contact-form">
+            <input type="text" id="name" placeholder="Your Name">
+            <input type="email" id="email" placeholder="Your Email">
+            <button type="submit">Submit</button>
+        </form>
+    </section>
 </body>
 </html>

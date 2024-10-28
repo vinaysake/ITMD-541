@@ -1,91 +1,63 @@
 (function() {
-  // Change hero section headline
-  const heroHeadline = document.querySelector('.hero h1'); // Adjust selector as necessary
-  if (heroHeadline) {
-      heroHeadline.textContent = "Supercharge Your Brand with Stellar Marketing";
-  }
+    // Step 1: Change the main headline text in the hero section
+    document.querySelector("#hero h1").textContent = "Supercharge Your Brand with Stellar Marketing";
 
-  // Change the hero section subtitle
-  const heroSubtitle = document.querySelector('.hero p'); // Adjust selector as necessary
-  if (heroSubtitle) {
-      heroSubtitle.innerHTML = "<strong><em>Leverage innovative strategies from Stellar Marketing to make your business shine and succeed.</em></strong>";
-  }
+    // Step 2: Change the sub-headline text below the main headline
+    document.querySelector("#hero p").innerHTML = "<b><i>Leverage innovative strategies from Stellar Marketing to make your business shine and succeed.</i></b>";
 
-  // Change background image of the hero
-  const heroSection = document.querySelector('.hero'); // Adjust selector as necessary
-  if (heroSection) {
-      heroSection.style.backgroundImage = "url('https://picsum.photos/id/683/1280/720')";
-  }
+    // Step 3: Change the background image of the hero section
+    document.querySelector("#hero").style.backgroundImage = "url('https://picsum.photos/id/683/1280/720')";
 
-  // Change navbar background color to footer color
-  const navbar = document.querySelector('nav'); // Adjust selector as necessary
-  const footer = document.querySelector('footer'); // Adjust selector as necessary
-  if (navbar && footer) {
-      navbar.style.backgroundColor = getComputedStyle(footer).backgroundColor;
-  }
+    // Step 4: Change the background color of the navbar to match the footer
+    const footerColor = window.getComputedStyle(document.querySelector("#footer")).backgroundColor;
+    document.querySelector("#navbar").style.backgroundColor = footerColor;
 
-  // Remove "Get Started" CTA
-  const getStartedCTA = document.querySelector('.hero .cta'); // Adjust selector as necessary
-  if (getStartedCTA) {
-      getStartedCTA.remove();
-  }
+    // Step 5: Remove the "Get Started" CTA button
+    const ctaButton = document.querySelector("#hero .cta-button");
+    if (ctaButton) ctaButton.remove();
 
-  // Add new full-width section below the hero
-  const newSection = document.createElement('div');
-  newSection.style.backgroundColor = '#6495ed';
-  newSection.style.color = 'blue';
-  newSection.style.textAlign = 'center';
-  newSection.style.padding = '32px 0';
-  newSection.innerHTML = "<button id='newCTA' style='background: white; color: blue; border: 4px solid blue; padding: 10px 20px; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);'>New Call to Action</button>";
-  document.body.insertBefore(newSection, heroSection.nextSibling);
-  
-  // Add click event for the new CTA button
-  document.getElementById('newCTA').onclick = function() {
-      alert("Thank You for your interest in Stellar Marketing!");
-  };
+    // Step 6: Add a new section below the hero with a CTA button
+    const newSection = document.createElement("section");
+    newSection.className = "new-section";
+    newSection.style.width = "100%";
+    newSection.innerHTML = `
+        <button class="cta-button" style="background-color: white; color: #6495ed; border: 4px solid #6495ed; padding: 10px 20px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);">
+            Learn More
+        </button>
+    `;
+    newSection.querySelector(".cta-button").onclick = () => alert("Thank You for your interest in Stellar Marketing!");
+    document.querySelector("#hero").insertAdjacentElement("afterend", newSection);
 
-  // Change services section icon color
-  const serviceIcons = document.querySelectorAll('.services .icon'); // Adjust selector as necessary
-  serviceIcons.forEach(icon => {
-      icon.style.color = '#6495ed';
-  });
+    // Step 7: Change icons color in the services section
+    document.querySelectorAll("#services .material-icons-outlined").forEach(icon => {
+        icon.style.color = "#6495ed";
+    });
 
-  // Change digital marketing icon
-  const digitalMarketingIcon = document.querySelector('.services .icon.digitamarketing'); // Adjust selector as necessary
-  if (digitalMarketingIcon) {
-      digitalMarketingIcon.innerHTML = '<span class="material-symbols-outlined" style="color:#6495ed;">ads_click</span>';
-  }
+    // Step 8: Change the digital marketing icon to 'Ads Click'
+    const digitalMarketingIcon = document.querySelector("#services .material-icons-outlined");
+    if (digitalMarketingIcon) digitalMarketingIcon.textContent = "ads_click";
 
-  // Layout adjustment for specialized marketing solutions
-  const specializedSection = document.querySelector('.specialized-marketing-solutions'); // Adjust selector as necessary
-  if (specializedSection) {
-      const tiles = specializedSection.querySelectorAll('.tile'); // Adjust selector as necessary
-      if (window.innerWidth >= 1024) {
-          specializedSection.style.display = "grid";
-          specializedSection.style.gridTemplateColumns = "repeat(4, 1fr)";
-      }
-  }
+    // Step 9: Modify layout for the specialized marketing solutions section for screens >=1024px
+    const solutionsSection = document.querySelector("#solutions");
+    if (solutionsSection) {
+        solutionsSection.style.display = "grid";
+        solutionsSection.style.gridTemplateColumns = "repeat(4, 1fr)";
+    }
 
-  // Change Musicians image
-  const musiciansImage = document.querySelector('.specialized-marketing-solutions .musicians img'); // Adjust selector as necessary
-  if (musiciansImage) {
-      musiciansImage.src = "https://picsum.photos/id/453/400/300";
-  }
+    // Step 10: Change the Musicians image in the specialized marketing solutions section
+    const musiciansImage = document.querySelector("#solutions img");
+    if (musiciansImage) musiciansImage.src = "https://picsum.photos/id/453/400/300";
 
-  // Handle form submission (graduate requirement)
-  const form = document.querySelector('form'); // Adjust selector as necessary
-  if (form) {
-      form.addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent form from submitting to broken URL
-          
-          const name = form.querySelector('input[name="name"]').value; // Adjust selector as necessary
-          const email = form.querySelector('input[name="email"]').value; // Adjust selector as necessary
-          
-          if (name && email) {
-              alert(`Thank you, ${name}! We will be in touch with you shortly at ${email}.`);
-          } else {
-              alert("Please provide a name and email.");
-          }
-      });
-  }
+    // Step 11: Prevent form submission to a broken URL and add validation for name and email fields
+    document.querySelector("#contact-form").onsubmit = function(event) {
+        event.preventDefault(); // Prevent actual form submission
+        const name = document.querySelector("#name").value;
+        const email = document.querySelector("#email").value;
+
+        if (name && email) {
+            alert(`Thank you, ${name}! We will be in touch with you shortly at ${email}.`);
+        } else {
+            alert("Please provide a name and email.");
+        }
+    };
 })();

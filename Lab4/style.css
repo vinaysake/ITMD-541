@@ -1,94 +1,27 @@
-/* Basic reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body styling */
+/* Just an example to have a visual structure */
 body {
     font-family: Arial, sans-serif;
 }
-
-/* Hero Section Styling */
-.hero {
-    background-color: #f8f8f8; /* Background color for hero area */
-    padding: 20px; /* Padding for hero */
-    text-align: center; /* Center align text */
+#navbar, #footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
 }
-
-/* New Section Styling */
+#hero {
+    background: url('https://picsum.photos/1280/720') center/cover;
+    text-align: center;
+    padding: 100px 20px;
+}
 .new-section {
-    background-color: #6495ed; /* Light blue background */
-    text-align: center; /* Center the text inside the section */
-    padding: 32px 0; /* 32px padding above and below */
+    background-color: #6495ed;
+    text-align: center;
+    padding: 32px 0;
 }
-
-/* CTA Button Styling */
-.cta-button {
-    background-color: white; /* White background for the button */
-    color: blue; /* Blue text color */
-    border: 4px solid blue; /* 4px blue border */
-    padding: 10px 20px; /* Button padding */
-    font-size: 16px; /* Size of button text */
-    font-weight: bold; /* Bold text for the button */
-    cursor: pointer; /* Change cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Minor drop shadow for depth */
-}
-
-/* Hover effect for CTA Button */
-.cta-button:hover {
-    background-color: #f0f0f0; /* Slight change on hover */
-}
-
-/* Services Section Icon Color */
-.services .icon {
-    color: #6495ed; /* Change the icon color */
-}
-
-/* Specialized Marketing Solutions Layout for Larger Screens */
-.specialized-marketing-solutions {
-    display: grid; /* Use grid layout by default */
-    grid-template-columns: repeat(2, 1fr); /* 2 columns by default */
-}
-
-.specialized-marketing-solutions .tile {
-    padding: 10px;
-}
-
-/* Responsive Layout Adjustment */
-@media (min-width: 1024px) {
-    .specialized-marketing-solutions {
-        grid-template-columns: repeat(4, 1fr); /* 4 columns on wider screens */
-    }
-}
-
-/* Form Styling */
-form {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ccc; /* Border around the form */
-    border-radius: 5px; /* Rounded corners for the form */
-}
-
-/* Individual Input Styling */
-input[type="text"], input[type="email"] {
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
-    width: 100%; /* Full width inputs */
-}
-
-button[type="submit"] {
-    padding: 10px 15px; /* Submit button padding */
-    background-color: #6495ed; /* Match the theme */
-    color: white; /* White text on button */
-    border: none; /* No border */
-    cursor: pointer; /* Pointer cursor on hover */
-}
-
-/* Hover effect for submit button */
-button[type="submit"]:hover {
-    background-color: #5a8cd7; /* Darker blue on hover */
+.new-section .cta-button {
+    background-color: white;
+    color: #6495ed;
+    border: 4px solid #6495ed;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
