@@ -1,117 +1,75 @@
+// IIFE to encapsulate the functionality
 (function() {
-    // Center content helper function
-    function centerElement(element) {
-        element.style.display = "flex";
-        element.style.justifyContent = "center";
-        element.style.alignItems = "center";
-        element.style.flexDirection = "column";
-        element.style.textAlign = "center";
-    }
+    // Set the background color, text color, and border for the body
+    document.body.style.backgroundColor = 'white';
+    document.body.style.color = 'blue';
+    document.body.style.border = '4px solid blue';
+    
+    // Create the "Get Started" button
+    const button = document.createElement('button');
+    button.textContent = 'Get Started';
+    button.style.backgroundColor = 'white';
+    button.style.color = 'blue';
+    button.style.border = 'none';
+    button.style.padding = '10px 20px';
+    button.style.cursor = 'pointer';
+    button.style.boxShadow = '1px 1px 5px rgba(0, 0, 0, 0.1)';
+    button.onclick = function() {
+        alert('Thank You for your interest in Stellar Marketing!');
+    };
+    
+    // Append the button to the body or a specific section
+    document.body.appendChild(button); // Change as needed to append it to a specific container
 
-    // Update main headline text
-    const heroHeadline = document.querySelector('.hero h1');
-    if (heroHeadline) {
-        heroHeadline.innerText = "Supercharge Your Brand with Stellar Marketing";
-    }
-
-    // Update sub-headline text with bold and italic
-    const heroSubHeadline = document.querySelector('.hero p');
-    if (heroSubHeadline) {
-        heroSubHeadline.innerHTML = "<b><i>Leverage innovative strategies from Stellar Marketing to make your business shine and succeed.</i></b>";
-    }
-
-    // Update the hero section background image
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        heroSection.style.backgroundImage = "url('https://picsum.photos/id/683/1280/720')";
-        heroSection.style.backgroundSize = "cover";
-        heroSection.style.backgroundPosition = "center";
-        heroSection.style.backgroundRepeat = "no-repeat";
-    }
-
-    // Change the navbar background color to match the footer
-    const navbar = document.querySelector('nav');
-    const footer = document.querySelector('footer');
-    if (footer && navbar) {
-        navbar.style.backgroundColor = window.getComputedStyle(footer).backgroundColor;
-    }
-
-    // Remove the "Get Started" CTA button in the hero section
-    const ctaButton = document.querySelector('.hero .cta-button');
-    if (ctaButton) {
-        ctaButton.remove();
-    }
-
-    // Add a new full-width section with CTA below the hero
-    const newSection = document.createElement('section');
-    newSection.style.width = "100%";
-    newSection.style.backgroundColor = "#6495ed";
-    newSection.style.padding = "32px 0";
-    centerElement(newSection); // Center the content
-
-    const newCTAButton = document.createElement('button');
-    newCTAButton.innerText = "Learn More";
-    newCTAButton.style.backgroundColor = "#ffffff";
-    newCTAButton.style.color = "#6495ed";
-    newCTAButton.style.border = "4px solid #6495ed";
-    newCTAButton.style.padding = "10px 20px";
-    newCTAButton.style.fontSize = "16px";
-    newCTAButton.style.cursor = "pointer";
-    newCTAButton.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.2)";
-    newCTAButton.addEventListener('click', () => {
-        alert("Thank You for your interest in Stellar Marketing!");
+    // Change icon color in the services section
+    const serviceIcons = document.querySelectorAll('.service-icon'); // Assuming these icons have a class 'service-icon'
+    serviceIcons.forEach(icon => {
+        icon.style.color = '#6495ed';
     });
 
-    newSection.appendChild(newCTAButton);
-    heroSection.insertAdjacentElement('afterend', newSection);
-
-    // Change the color of icons in the services section
-    const icons = document.querySelectorAll('.services .material-icons-outlined');
-    icons.forEach(icon => {
-        icon.style.color = "#6495ed";
-    });
-
-    // Update the digital marketing icon to 'Ads Click'
-    const digitalMarketingIcon = document.querySelector('.services .digital-marketing-icon');
+    // Change digital marketing icon to 'Ads Click'
+    const digitalMarketingIcon = document.querySelector('.digital-marketing-icon'); // Change selector as needed
     if (digitalMarketingIcon) {
-        digitalMarketingIcon.innerText = "ads_click";
+        digitalMarketingIcon.className = 'material-symbols-outlined ads_click'; // Change to ads_click
     }
 
-    // Adjust layout in the specialized marketing solutions section for larger screens
-    const specializedSolutionsSection = document.querySelector('.specialized-solutions');
-    if (specializedSolutionsSection) {
-        specializedSolutionsSection.style.display = "grid";
-        specializedSolutionsSection.style.gridTemplateColumns = "repeat(auto-fit, minmax(200px, 1fr))";
-        specializedSolutionsSection.style.gap = "20px";
+    // Change the layout of the specialized marketing solutions section
+    const solutionsSection = document.querySelector('.specialized-marketing-solutions'); // Change selector as needed
+    if (solutionsSection) {
+        const mediaQuery = window.matchMedia('(min-width: 1024px)');
+        const applyGridStyle = () => {
+            if (mediaQuery.matches) {
+                solutionsSection.style.display = 'grid';
+                solutionsSection.style.gridTemplateColumns = 'repeat(4, 1fr)';
+            } else {
+                solutionsSection.style.display = 'grid';
+                solutionsSection.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            }
+        };
+        applyGridStyle();
+        mediaQuery.addListener(applyGridStyle); // Listen for screen size changes
     }
 
-    // Change the Musicians image
-    const musiciansImage = document.querySelector('.specialized-solutions .musicians img');
+    // Change Musicians image
+    const musiciansImage = document.querySelector('.musicians-image'); // Change selector as needed
     if (musiciansImage) {
-        musiciansImage.src = "https://picsum.photos/id/453/400/300";
+        musiciansImage.src = 'https://picsum.photos/id/453/400/300';
     }
 
-    // Form submission changes (for graduate requirements)
-    const form = document.querySelector('form');
+    // Handle form submission
+    const form = document.querySelector('form'); // Change to the specific form selector
     if (form) {
-        form.addEventListener('submit', (event) => {
-            event.preventDefault(); // Prevent default form submission to a broken URL
-
-            // Select input fields by name attributes
-            const nameInput = document.querySelector('input[name="name"]');
-            const emailInput = document.querySelector('input[name="email"]');
-
-            // Check if name and email inputs exist and retrieve their values
-            const name = nameInput ? nameInput.value.trim() : "";
-            const email = emailInput ? emailInput.value.trim() : "";
+        form.onsubmit = function(event) {
+            event.preventDefault(); // Prevent the form from submitting to a broken URL
+            
+            const name = form.querySelector('input[name="name"]').value; // Change input name as necessary
+            const email = form.querySelector('input[name="email"]').value; // Change input name as necessary
 
             if (name && email) {
-                // Display success alert with name and email from the form
                 alert(`Thank you, ${name}! We will be in touch with you shortly at ${email}.`);
             } else {
-                // Display error alert if name or email is missing
-                alert("Please provide a name and email.");
+                alert('Please provide a name and email.');
             }
-        });
+        };
     }
 })();
