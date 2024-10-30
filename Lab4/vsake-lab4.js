@@ -1,16 +1,14 @@
-// userId-lab4.js
 (function () {
-    // Change the hero headline text
+    // Change hero section headline text
     const heroHeadline = document.querySelector(".hero h1");
     if (heroHeadline) {
       heroHeadline.textContent = "Supercharge Your Brand with Stellar Marketing";
     }
   
-    // Change the hero subheadline text
-    const heroSubHeadline = document.querySelector(".hero p");
-    if (heroSubHeadline) {
-      heroSubHeadline.innerHTML =
-        "<strong>Leverage innovative strategies from Stellar Marketing</strong> to make your business <em>shine and succeed.</em>";
+    // Change subheadline text below the hero headline
+    const heroSubheadline = document.querySelector(".hero p");
+    if (heroSubheadline) {
+      heroSubheadline.innerHTML = `<strong><em>Leverage innovative strategies from Stellar Marketing to make your business shine and succeed.</em></strong>`;
     }
   
     // Change hero background image
@@ -19,27 +17,26 @@
       heroSection.style.backgroundImage = "url('https://picsum.photos/id/683/1280/720')";
     }
   
-    // Change the nav bar background color to match the footer
-    const navBar = document.querySelector("nav");
+    // Change nav bar background color to match footer
+    const navbar = document.querySelector("nav");
     const footer = document.querySelector("footer");
-    if (navBar && footer) {
-      const footerColor = getComputedStyle(footer).backgroundColor;
-      navBar.style.backgroundColor = footerColor;
+    if (navbar && footer) {
+      const footerBackgroundColor = getComputedStyle(footer).backgroundColor;
+      navbar.style.backgroundColor = footerBackgroundColor;
     }
   
-    // Remove the 'Get Started' CTA button from hero
-    const getStartedBtn = document.querySelector(".hero .cta-button");
-    if (getStartedBtn) {
-      getStartedBtn.remove();
+    // Remove the "Get Started" CTA button from hero
+    const getStartedButton = document.querySelector(".hero button");
+    if (getStartedButton) {
+      getStartedButton.remove();
     }
   
-    // Create and insert the new full-width section below hero
+    // Create and insert new full-width section below the hero
     const newSection = document.createElement("section");
     newSection.style.width = "100%";
     newSection.style.backgroundColor = "#6495ed";
     newSection.style.padding = "32px 0";
-    newSection.style.display = "flex";
-    newSection.style.justifyContent = "center";
+    newSection.style.textAlign = "center";
   
     const newButton = document.createElement("button");
     newButton.textContent = "Explore Stellar Marketing";
@@ -49,7 +46,7 @@
     newButton.style.border = "4px solid #6495ed";
     newButton.style.fontSize = "16px";
     newButton.style.cursor = "pointer";
-    newButton.style.boxShadow = "0px 2px 5px rgba(0,0,0,0.1)";
+    newButton.style.boxShadow = "0px 2px 5px rgba(0, 0, 0, 0.1)";
     newButton.onclick = function () {
       alert("Thank You for your interest in Stellar Marketing!");
     };
@@ -57,49 +54,40 @@
     newSection.appendChild(newButton);
     heroSection.insertAdjacentElement("afterend", newSection);
   
-    // Change icons color in the services section
-    const serviceIcons = document.querySelectorAll(".services .material-symbols-outlined");
+    // Change color of icons in the services section
+    const serviceIcons = document.querySelectorAll(".services .material-icons-outlined");
     serviceIcons.forEach((icon) => {
       icon.style.color = "#6495ed";
     });
   
-    // Change digital marketing icon to 'Ads Click'
-    const digitalMarketingIcon = document.querySelector(".services .digital-marketing .material-symbols-outlined");
+    // Change the digital marketing icon to 'Ads Click'
+    const digitalMarketingIcon = document.querySelector(".services .digital-marketing .material-icons-outlined");
     if (digitalMarketingIcon) {
       digitalMarketingIcon.textContent = "ads_click";
     }
   
-    // Adjust tiles layout to 4 across in specialized marketing solutions section at >= 1024px
-    const solutionsSection = document.querySelector(".specialized-marketing-solutions");
-    if (solutionsSection) {
-      const style = document.createElement("style");
-      style.textContent = `
-        @media (min-width: 1024px) {
-          .specialized-marketing-solutions .tile {
-            width: 25%;
-          }
-        }
-      `;
-      document.head.appendChild(style);
+    // Change layout of tiles in the specialized marketing solutions section
+    const marketingSolutions = document.querySelector(".specialized-marketing-solutions .tiles");
+    if (marketingSolutions) {
+      marketingSolutions.style.display = "grid";
+      marketingSolutions.style.gridTemplateColumns = "repeat(auto-fit, minmax(250px, 1fr))";
+      marketingSolutions.style.gap = "20px";
     }
   
-    // Change Musicians image
+    // Change image for Musicians in specialized marketing solutions section
     const musiciansImage = document.querySelector(".specialized-marketing-solutions .musicians img");
     if (musiciansImage) {
       musiciansImage.src = "https://picsum.photos/id/453/400/300";
     }
   
-    // Form adjustments (if applicable for ITMD 541 students)
+    // Form adjustments (for ITMD 541 students)
     const form = document.querySelector("form");
     if (form) {
-      // Example form adjustments: add placeholders, style inputs, etc.
       const inputs = form.querySelectorAll("input, textarea");
       inputs.forEach((input) => {
         input.style.border = "2px solid #6495ed";
         input.style.borderRadius = "5px";
       });
     }
-  
-    console.log("Lab 4 IIFE executed successfully");
   })();
   
