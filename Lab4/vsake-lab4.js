@@ -1,75 +1,105 @@
-// IIFE to encapsulate the functionality
-(function() {
-    // Set the background color, text color, and border for the body
-    document.body.style.backgroundColor = 'white';
-    document.body.style.color = 'blue';
-    document.body.style.border = '4px solid blue';
-    
-    // Create the "Get Started" button
-    const button = document.createElement('button');
-    button.textContent = 'Get Started';
-    button.style.backgroundColor = 'white';
-    button.style.color = 'blue';
-    button.style.border = 'none';
-    button.style.padding = '10px 20px';
-    button.style.cursor = 'pointer';
-    button.style.boxShadow = '1px 1px 5px rgba(0, 0, 0, 0.1)';
-    button.onclick = function() {
-        alert('Thank You for your interest in Stellar Marketing!');
+// userId-lab4.js
+(function () {
+    // Change the hero headline text
+    const heroHeadline = document.querySelector(".hero h1");
+    if (heroHeadline) {
+      heroHeadline.textContent = "Supercharge Your Brand with Stellar Marketing";
+    }
+  
+    // Change the hero subheadline text
+    const heroSubHeadline = document.querySelector(".hero p");
+    if (heroSubHeadline) {
+      heroSubHeadline.innerHTML =
+        "<strong>Leverage innovative strategies from Stellar Marketing</strong> to make your business <em>shine and succeed.</em>";
+    }
+  
+    // Change hero background image
+    const heroSection = document.querySelector(".hero");
+    if (heroSection) {
+      heroSection.style.backgroundImage = "url('https://picsum.photos/id/683/1280/720')";
+    }
+  
+    // Change the nav bar background color to match the footer
+    const navBar = document.querySelector("nav");
+    const footer = document.querySelector("footer");
+    if (navBar && footer) {
+      const footerColor = getComputedStyle(footer).backgroundColor;
+      navBar.style.backgroundColor = footerColor;
+    }
+  
+    // Remove the 'Get Started' CTA button from hero
+    const getStartedBtn = document.querySelector(".hero .cta-button");
+    if (getStartedBtn) {
+      getStartedBtn.remove();
+    }
+  
+    // Create and insert the new full-width section below hero
+    const newSection = document.createElement("section");
+    newSection.style.width = "100%";
+    newSection.style.backgroundColor = "#6495ed";
+    newSection.style.padding = "32px 0";
+    newSection.style.display = "flex";
+    newSection.style.justifyContent = "center";
+  
+    const newButton = document.createElement("button");
+    newButton.textContent = "Explore Stellar Marketing";
+    newButton.style.padding = "12px 24px";
+    newButton.style.backgroundColor = "white";
+    newButton.style.color = "#6495ed";
+    newButton.style.border = "4px solid #6495ed";
+    newButton.style.fontSize = "16px";
+    newButton.style.cursor = "pointer";
+    newButton.style.boxShadow = "0px 2px 5px rgba(0,0,0,0.1)";
+    newButton.onclick = function () {
+      alert("Thank You for your interest in Stellar Marketing!");
     };
-    
-    // Append the button to the body or a specific section
-    document.body.appendChild(button); // Change as needed to append it to a specific container
-
-    // Change icon color in the services section
-    const serviceIcons = document.querySelectorAll('.service-icon'); // Assuming these icons have a class 'service-icon'
-    serviceIcons.forEach(icon => {
-        icon.style.color = '#6495ed';
+  
+    newSection.appendChild(newButton);
+    heroSection.insertAdjacentElement("afterend", newSection);
+  
+    // Change icons color in the services section
+    const serviceIcons = document.querySelectorAll(".services .material-symbols-outlined");
+    serviceIcons.forEach((icon) => {
+      icon.style.color = "#6495ed";
     });
-
+  
     // Change digital marketing icon to 'Ads Click'
-    const digitalMarketingIcon = document.querySelector('.digital-marketing-icon'); // Change selector as needed
+    const digitalMarketingIcon = document.querySelector(".services .digital-marketing .material-symbols-outlined");
     if (digitalMarketingIcon) {
-        digitalMarketingIcon.className = 'material-symbols-outlined ads_click'; // Change to ads_click
+      digitalMarketingIcon.textContent = "ads_click";
     }
-
-    // Change the layout of the specialized marketing solutions section
-    const solutionsSection = document.querySelector('.specialized-marketing-solutions'); // Change selector as needed
+  
+    // Adjust tiles layout to 4 across in specialized marketing solutions section at >= 1024px
+    const solutionsSection = document.querySelector(".specialized-marketing-solutions");
     if (solutionsSection) {
-        const mediaQuery = window.matchMedia('(min-width: 1024px)');
-        const applyGridStyle = () => {
-            if (mediaQuery.matches) {
-                solutionsSection.style.display = 'grid';
-                solutionsSection.style.gridTemplateColumns = 'repeat(4, 1fr)';
-            } else {
-                solutionsSection.style.display = 'grid';
-                solutionsSection.style.gridTemplateColumns = 'repeat(2, 1fr)';
-            }
-        };
-        applyGridStyle();
-        mediaQuery.addListener(applyGridStyle); // Listen for screen size changes
+      const style = document.createElement("style");
+      style.textContent = `
+        @media (min-width: 1024px) {
+          .specialized-marketing-solutions .tile {
+            width: 25%;
+          }
+        }
+      `;
+      document.head.appendChild(style);
     }
-
+  
     // Change Musicians image
-    const musiciansImage = document.querySelector('.musicians-image'); // Change selector as needed
+    const musiciansImage = document.querySelector(".specialized-marketing-solutions .musicians img");
     if (musiciansImage) {
-        musiciansImage.src = 'https://picsum.photos/id/453/400/300';
+      musiciansImage.src = "https://picsum.photos/id/453/400/300";
     }
-
-    // Handle form submission
-    const form = document.querySelector('form'); // Change to the specific form selector
+  
+    // Form adjustments (if applicable for ITMD 541 students)
+    const form = document.querySelector("form");
     if (form) {
-        form.onsubmit = function(event) {
-            event.preventDefault(); // Prevent the form from submitting to a broken URL
-            
-            const name = form.querySelector('input[name="name"]').value; // Change input name as necessary
-            const email = form.querySelector('input[name="email"]').value; // Change input name as necessary
-
-            if (name && email) {
-                alert(`Thank you, ${name}! We will be in touch with you shortly at ${email}.`);
-            } else {
-                alert('Please provide a name and email.');
-            }
-        };
+      // Example form adjustments: add placeholders, style inputs, etc.
+      const inputs = form.querySelectorAll("input, textarea");
+      inputs.forEach((input) => {
+        input.style.border = "2px solid #6495ed";
+        input.style.borderRadius = "5px";
+      });
     }
-})();
+  
+    console.log("Lab 4 IIFE executed successfully");
+  })();
+  
