@@ -70,10 +70,11 @@
   </footer>
 
   <script>
-    // Handling form submission to show a "Message Sent" alert
+    // Handling form submission to show a personalized "Message Sent" alert
     document.querySelector('.contact form').addEventListener('submit', function(event) {
       event.preventDefault();
-      alert('Your message has been sent!');
+      const name = document.getElementById('name').value; // Get the name value
+      alert(`Thank you, ${name}! We will be in touch with you shortly.`);
     });
   </script>
 </body>
