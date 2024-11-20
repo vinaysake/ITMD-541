@@ -1,8 +1,6 @@
 // Function to handle form submission
 function handleFormSubmission(event) {
     event.preventDefault(); 
-
-
     const formData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
@@ -25,7 +23,6 @@ function handleFormSubmission(event) {
 
     window.location.href = 'resume.html';
 }
-
 
 function loadResumeData() {
     const formData = JSON.parse(sessionStorage.getItem('resumeData'));
@@ -68,7 +65,6 @@ function loadResumeData() {
         window.location.href = 'form.html';
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('detailsForm')) {
