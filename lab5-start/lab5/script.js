@@ -1,87 +1,77 @@
 // Function to handle form submission
 function handleFormSubmission(event) {
-    event.preventDefault(); // Prevent default form submission behavior
-
-    // Collect form data
+    event.preventDefault(); 
     const formData = {
-        name: document.getElementById('name').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        phone: document.getElementById('phone_number').value.trim(),
-        degree: document.getElementById('degree').value.trim(),
-        institute: document.getElementById('institute').value.trim(),
-        passingYear: document.getElementById('passingYear').value.trim(),
-        jobTitle: document.getElementById('job_title').value.trim(),
-        company: document.getElementById('company').value.trim(),
-        duration: document.getElementById('duration').value.trim(),
-        responsibility: document.getElementById('responsibility').value.trim(),
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone_number').value,
+        degree: document.getElementById('degree').value,
+        institute: document.getElementById('institute').value,
+        passingYear: document.getElementById('passing Year').value,
+        jobTitle: document.getElementById('job_title').value,
+        company: document.getElementById('company').value,
+        duration: document.getElementById('duration').value,
+        responsibility: document.getElementById('responsibility').value,
         languages: Array.from(document.querySelectorAll('.checkbox-group input:checked')).map(el => el.value),
         frameworks: Array.from(document.querySelectorAll('.check-grp input:checked')).map(el => el.value),
-        versionControl: document.getElementById('version').value.trim(),
-        projectName: document.getElementById('ProjectName').value.trim(),
-        projectDescription: document.getElementById('ProjectDescription').value.trim()
+        versionControl: document.getElementById('version').value,
+        projectName: document.getElementById('ProjectName').value,
+        projectDescription: document.getElementById('ProjectDescription').value
     };
 
-    console.log("Collected Form Data:", formData); // Debugging log
-
-    // Save the form data to sessionStorage as JSON
     sessionStorage.setItem('resumeData', JSON.stringify(formData));
 
-    // Redirect to resume.html
     window.location.href = 'resume.html';
 }
 
-// Function to load and display data on resume.html
 function loadResumeData() {
-    const formData = JSON.parse(sessionStorage.getItem('resumeData')); // Retrieve data from sessionStorage
+    const formData = JSON.parse(sessionStorage.getItem('resumeData'));
 
     if (formData) {
-        // Update placeholders in resume.html with form data
-        document.getElementById('displayName').textContent = formData.name || 'N/A';
-        document.getElementById('displayEmail').textContent = formData.email || 'N/A';
-        document.getElementById('displayPhone').textContent = formData.phone || 'N/A';
+        // Populate placeholders with form data
+        document.getElementById('displayName').textContent = formData.name;
+        document.getElementById('displayEmail').textContent = formData.email;
+        document.getElementById('displayPhone').textContent = formData.phone;
 
         document.getElementById('displayEducation').innerHTML = `
-            <strong>Degree:</strong> ${formData.degree || 'N/A'}<br>
-            <strong>Institution:</strong> ${formData.institute || 'N/A'}<br>
-            <strong>Passing Year:</strong> ${formData.passingYear || 'N/A'}
+            <strong>Degree:</strong> ${formData.degree}<br>
+            <strong>Institution:</strong> ${formData.institute}<br>
+            <strong>Passing Year:</strong> ${formData.passingYear}
         `;
 
         document.getElementById('displayExperience').innerHTML = `
-            <strong>Job Title:</strong> ${formData.jobTitle || 'N/A'}<br>
-            <strong>Company:</strong> ${formData.company || 'N/A'}<br>
-            <strong>Duration:</strong> ${formData.duration || 'N/A'}<br>
-            <strong>Responsibility:</strong> ${formData.responsibility || 'N/A'}
+            <strong>Job Title:</strong> ${formData.jobTitle}<br>
+            <strong>Company:</strong> ${formData.company}<br>
+            <strong>Duration:</strong> ${formData.duration}<br>
+            <strong>Responsibility:</strong> ${formData.responsibility}
         `;
 
         document.getElementById('displaySkills').innerHTML = `
             <ul>
-                <li><strong>Languages:</strong> ${formData.languages.join(', ') || 'N/A'}</li>
-                <li><strong>Frameworks:</strong> ${formData.frameworks.join(', ') || 'N/A'}</li>
-                <li><strong>Version Control:</strong> ${formData.versionControl || 'N/A'}</li>
+                <li><strong>Languages:</strong> ${formData.languages.join(', ')}</li>
+                <li><strong>Frameworks:</strong> ${formData.frameworks.join(', ')}</li>
+                <li><strong>Version Control:</strong> ${formData.versionControl}</li>
             </ul>
         `;
 
         document.getElementById('displayProject').innerHTML = `
             <ul>
-                <li><strong>Project Name:</strong> ${formData.projectName || 'N/A'}</li>
-                <li><strong>Project Description:</strong> ${formData.projectDescription || 'N/A'}</li>
+                <li><strong>Project Name:</strong> ${formData.projectName}</li>
+                <li><strong>Project Description:</strong> ${formData.projectDescription}</li>
             </ul>
         `;
     } else {
-        // Redirect back to form.html if no data is found
-        console.warn("No data in sessionStorage. Redirecting to form.html...");
+        // Redirect to form.html if no data is present
         window.location.href = 'form.html';
     }
 }
 
-// Initialize event listeners
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if on form.html
     if (document.getElementById('detailsForm')) {
+      
         document.getElementById('detailsForm').addEventListener('submit', handleFormSubmission);
-    }
-    // Check if on resume.html
-    else if (document.getElementById('resumePage')) {
+    } else if (document.getElementById('resumePage')) {
+        
         loadResumeData();
     }
 });
