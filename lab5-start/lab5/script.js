@@ -1,7 +1,7 @@
-// Function to handle form submission
-function handleFormSubmission(event) {
+// Function to handle form submission and save data to sessionStorage
+function submitForm(event) {
     event.preventDefault(); 
-    const formData = {
+    const resumeDetails = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         phone: document.getElementById('phone_number').value,
@@ -12,66 +12,64 @@ function handleFormSubmission(event) {
         company: document.getElementById('company').value,
         duration: document.getElementById('duration').value,
         responsibility: document.getElementById('responsibility').value,
-        languages: Array.from(document.querySelectorAll('.checkbox-group input:checked')).map(el => el.value),
-        frameworks: Array.from(document.querySelectorAll('.check-grp input:checked')).map(el => el.value),
+        languages: Array.from(document.querySelectorAll('.checkbox-group input:checked')).map(input => input.value),
+        frameworks: Array.from(document.querySelectorAll('.check-grp input:checked')).map(input => input.value),
         versionControl: document.getElementById('version').value,
         projectName: document.getElementById('ProjectName').value,
         projectDescription: document.getElementById('ProjectDescription').value
     };
 
-    sessionStorage.setItem('resumeData', JSON.stringify(formData));
-
+    sessionStorage.setItem('resumeData', JSON.stringify(resumeDetails));
     window.location.href = 'resume.html';
 }
 
-function loadResumeData() {
-    const formData = JSON.parse(sessionStorage.getItem('resumeData'));
+// Function to load and display stored resume data
+function loadResume() {
+    const resumeDetails = JSON.parse(sessionStorage.getItem('resumeData'));
 
-    if (formData) {
-        // Populate placeholders with form data
-        document.getElementById('displayName').textContent = formData.name;
-        document.getElementById('displayEmail').textContent = formData.email;
-        document.getElementById('displayPhone').textContent = formData.phone;
+    if (resumeDetails) {
+        document.getElementById('displayName').textContent = resumeDetails.name;
+        document.getElementById('displayEmail').textContent = resumeDetails.email;
+        document.getElementById('displayPhone').textContent = resumeDetails.phone;
 
         document.getElementById('displayEducation').innerHTML = `
-            <strong>Degree:</strong> ${formData.degree}<br>
-            <strong>Institution:</strong> ${formData.institute}<br>
-            <strong>Passing Year:</strong> ${formData.passingYear}
+            <strong>Degree:</strong> ${resumeDetails.degree}<br>
+            <strong>Institution:</strong> ${resumeDetails.institute}<br>
+            <strong>Passing Year:</strong> ${resumeDetails.passingYear}
         `;
 
         document.getElementById('displayExperience').innerHTML = `
-            <strong>Job Title:</strong> ${formData.jobTitle}<br>
-            <strong>Company:</strong> ${formData.company}<br>
-            <strong>Duration:</strong> ${formData.duration}<br>
-            <strong>Responsibility:</strong> ${formData.responsibility}
+            <strong>Job Title:</strong> ${resumeDetails.jobTitle}<br>
+            <strong>Company:</strong> ${resumeDetails.company}<br>
+            <strong>Duration:</strong> ${resumeDetails.duration}<br>
+            <strong>Responsibilities:</strong> ${resumeDetails.responsibility}
         `;
 
         document.getElementById('displaySkills').innerHTML = `
             <ul>
-                <li><strong>Languages:</strong> ${formData.languages.join(', ')}</li>
-                <li><strong>Frameworks:</strong> ${formData.frameworks.join(', ')}</li>
-                <li><strong>Version Control:</strong> ${formData.versionControl}</li>
+                <li><strong>Languages:</strong> ${resumeDetails.languages.join(', ')}</li>
+                <li><strong>Frameworks:</strong> ${resumeDetails.frameworks.join(', ')}</li>
+                <li><strong>Version Control:</strong> ${resumeDetails.versionControl}</li>
             </ul>
         `;
 
         document.getElementById('displayProject').innerHTML = `
             <ul>
-                <li><strong>Project Name:</strong> ${formData.projectName}</li>
-                <li><strong>Project Description:</strong> ${formData.projectDescription}</li>
+                <li><strong>Project Name:</strong> ${resumeDetails.projectName}</li>
+                <li><strong>Project Description:</strong> ${resumeDetails.projectDescription}</li>
             </ul>
         `;
     } else {
-        // Redirect to form.html if no data is present
         window.location.href = 'form.html';
     }
 }
 
+// Event listener to trigger functions based on page load
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('detailsForm')) {
-      
-        document.getElementById('detailsForm').addEventListener('submit', handleFormSubmission);
+    const form = document.getElementById('detailsForm');
+    if (form) {
+        form.addEventListener('submit', submitForm);
     } else if (document.getElementById('resumePage')) {
-        
-        loadResumeData();
+        loadResume();
     }
 });
