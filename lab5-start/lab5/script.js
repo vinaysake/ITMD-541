@@ -1,39 +1,41 @@
 // Function to handle form submission
 function handleFormSubmission(event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); // Prevent default form submission behavior
 
     // Collect form data
     const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone_number').value,
-        degree: document.getElementById('degree').value,
-        institute: document.getElementById('institute').value,
-        passingYear: document.getElementById('passingYear').value,
-        jobTitle: document.getElementById('job_title').value,
-        company: document.getElementById('company').value,
-        duration: document.getElementById('duration').value,
-        responsibility: document.getElementById('responsibility').value,
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone_number').value.trim(),
+        degree: document.getElementById('degree').value.trim(),
+        institute: document.getElementById('institute').value.trim(),
+        passingYear: document.getElementById('passingYear').value.trim(),
+        jobTitle: document.getElementById('job_title').value.trim(),
+        company: document.getElementById('company').value.trim(),
+        duration: document.getElementById('duration').value.trim(),
+        responsibility: document.getElementById('responsibility').value.trim(),
         languages: Array.from(document.querySelectorAll('.checkbox-group input:checked')).map(el => el.value),
         frameworks: Array.from(document.querySelectorAll('.check-grp input:checked')).map(el => el.value),
-        versionControl: document.getElementById('version').value,
-        projectName: document.getElementById('ProjectName').value,
-        projectDescription: document.getElementById('ProjectDescription').value
+        versionControl: document.getElementById('version').value.trim(),
+        projectName: document.getElementById('ProjectName').value.trim(),
+        projectDescription: document.getElementById('ProjectDescription').value.trim()
     };
 
-    // Save form data to sessionStorage
+    console.log("Collected Form Data:", formData); // Debugging log
+
+    // Save the form data to sessionStorage as JSON
     sessionStorage.setItem('resumeData', JSON.stringify(formData));
 
     // Redirect to resume.html
     window.location.href = 'resume.html';
 }
 
-// Function to load and populate resume data
+// Function to load and display data on resume.html
 function loadResumeData() {
-    const formData = JSON.parse(sessionStorage.getItem('resumeData')); // Retrieve data
+    const formData = JSON.parse(sessionStorage.getItem('resumeData')); // Retrieve data from sessionStorage
 
     if (formData) {
-        // Populate placeholders with form data
+        // Update placeholders in resume.html with form data
         document.getElementById('displayName').textContent = formData.name || 'N/A';
         document.getElementById('displayEmail').textContent = formData.email || 'N/A';
         document.getElementById('displayPhone').textContent = formData.phone || 'N/A';
@@ -66,18 +68,20 @@ function loadResumeData() {
             </ul>
         `;
     } else {
-        // Redirect to form.html if no data exists
+        // Redirect back to form.html if no data is found
+        console.warn("No data in sessionStorage. Redirecting to form.html...");
         window.location.href = 'form.html';
     }
 }
 
 // Initialize event listeners
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if on form.html
     if (document.getElementById('detailsForm')) {
-        // Attach form submission handler if on form.html
         document.getElementById('detailsForm').addEventListener('submit', handleFormSubmission);
-    } else if (document.getElementById('resumePage')) {
-        // Load resume data if on resume.html
+    }
+    // Check if on resume.html
+    else if (document.getElementById('resumePage')) {
         loadResumeData();
     }
 });
