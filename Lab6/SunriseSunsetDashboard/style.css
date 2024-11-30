@@ -37,6 +37,14 @@ h1 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.date {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  margin: -10px 0 20px 0;
+  font-style: italic;
+}
+
 .location-controls {
   display: flex;
   gap: 15px;
@@ -52,6 +60,7 @@ select, button {
   background: rgba(0, 0, 0, 0.6);
   color: white;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 select {
@@ -64,6 +73,7 @@ select option {
 
 button:hover {
   background: rgba(0, 0, 0, 0.8);
+  transform: translateY(-2px);
 }
 
 .dashboard {
@@ -77,6 +87,7 @@ button:hover {
   background: rgba(0, 0, 0, 0.6);
   border-radius: 12px;
   padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .day-panel h2 {
@@ -98,12 +109,19 @@ button:hover {
   padding: 15px;
   border-radius: 8px;
   text-align: center;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.time-card:hover {
+  transform: translateY(-5px);
 }
 
 .time-card i {
   font-size: 24px;
   color: #ffd700;
   margin-bottom: 10px;
+  display: block;
 }
 
 .time-card h3 {
@@ -115,6 +133,8 @@ button:hover {
 .time-card p {
   font-size: 1.2rem;
   font-weight: 600;
+  min-height: 1.5em;
+  padding: 5px 0;
 }
 
 .additional-info {
@@ -128,6 +148,13 @@ button:hover {
   margin-bottom: 10px;
 }
 
+.additional-info span {
+  color: #ffd700;
+  font-weight: 500;
+  min-width: 80px;
+  display: inline-block;
+}
+
 .timezone-info {
   text-align: center;
   background: rgba(0, 0, 0, 0.6);
@@ -135,6 +162,12 @@ button:hover {
   border-radius: 8px;
   max-width: 400px;
   margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timezone-info span {
+  color: #ffd700;
+  font-weight: 500;
 }
 
 .error-message {
@@ -146,6 +179,12 @@ button:hover {
   margin: 20px auto;
   max-width: 600px;
   text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 footer {
@@ -156,6 +195,11 @@ footer {
 footer a {
   color: #ffd700;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #fff;
 }
 
 @media (max-width: 768px) {
@@ -165,9 +209,47 @@ footer a {
   
   .location-controls {
       flex-direction: column;
+      align-items: center;
   }
   
   select, button {
       width: 100%;
+      max-width: 300px;
+  }
+
+  .date {
+      font-size: 1rem;
+      margin: -8px 0 15px 0;
+  }
+
+  .time-card {
+      padding: 12px;
+  }
+
+  .time-card i {
+      font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+      padding: 10px;
+  }
+
+  h1 {
+      font-size: 2rem;
+  }
+
+  .time-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .additional-info {
+      font-size: 0.9rem;
+  }
+
+  .timezone-info {
+      font-size: 0.9rem;
+      padding: 12px;
   }
 }

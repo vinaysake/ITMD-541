@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const tomorrowData = await tomorrowResponse.json();
 
             if (todayData.status === 'OK' && tomorrowData.status === 'OK') {
-                updateDashboard('today', todayData.results);
-                updateDashboard('tomorrow', tomorrowData.results);
+                updateDashboard('today', todayData.results, today);
+                updateDashboard('tomorrow', tomorrowData.results, tomorrow);
                 document.getElementById('timezone').textContent = todayData.results.timezone;
                 errorMessage.style.display = 'none';
             } else {
@@ -28,8 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function updateDashboard(day, data) {
+    function updateDashboard(day, data, date) {
         const prefix = day;
+        // Update the date display
+        document.getElementById(`${prefix}Date`).textContent = formatDisplayDate(date);
+        
+        // Update other data
         document.getElementById(`${prefix}Sunrise`).textContent = data.sunrise;
         document.getElementById(`${prefix}Sunset`).textContent = data.sunset;
         document.getElementById(`${prefix}Dawn`).textContent = data.dawn;
@@ -42,9 +46,23 @@ document.addEventListener('DOMContentLoaded', () => {
         return date.toISOString().split('T')[0];
     }
 
+    function formatDisplayDate(date) {
+        const options = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        };
+        return date.toLocaleDateString('en-US', options);
+    }
+
     function showError(message) {
         errorMessage.textContent = message;
         errorMessage.style.display = 'block';
+
+        // Reset dates along with other fields
+        document.getElementById('todayDate').textContent = '--';
+        document.getElementById('tomorrowDate').textContent = '--';
     }
 
     locationSelect.addEventListener('change', (e) => {
