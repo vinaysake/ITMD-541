@@ -18,20 +18,28 @@ const fetchSunriseSunset = (lat, lon) => {
 
   // Fetching sunrise and sunset times
   fetch(apiUrl)
-    .then((response) => response.json())
+    .then((response) => {
+      console.log(response);  // Log the API response to check if it's successful
+      return response.json();
+    })
     .then((data) => {
-      const sunrise = new Date(data.results.sunrise);
-      const sunset = new Date(data.results.sunset);
+      console.log(data);  // Log the data received from the API
+      if (data.results) {
+        const sunrise = new Date(data.results.sunrise);
+        const sunset = new Date(data.results.sunset);
 
-      // Format the times to a readable format
-      const sunriseTime = sunrise.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-      const sunsetTime = sunset.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+        // Format the times to a readable format
+        const sunriseTime = sunrise.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+        const sunsetTime = sunset.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
-      // Display the times on the page
-      contentContainer.innerHTML = `
-        <h2>Sunrise: ${sunriseTime}</h2>
-        <h2>Sunset: ${sunsetTime}</h2>
-      `;
+        // Display the times on the page
+        contentContainer.innerHTML = `
+          <h2>Sunrise: ${sunriseTime}</h2>
+          <h2>Sunset: ${sunsetTime}</h2>
+        `;
+      } else {
+        showError("Unable to fetch sunrise and sunset times.");
+      }
     })
     .catch((error) => {
       console.error("Error fetching sunrise and sunset data:", error);
@@ -48,15 +56,19 @@ const getLocation = () => {
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
 
+        console.log("Location found: ", latitude, longitude);  // Log latitude and longitude
+
         // Fetch sunrise and sunset times using the user's location
         fetchSunriseSunset(latitude, longitude);
       },
       (error) => {
+        console.error("Location error: ", error);  // Log error if geolocation fails
         showError("Unable to get your location. Please enable location services.");
         contentContainer.innerHTML = "<p>Unable to get your location.</p>";
       }
     );
   } else {
+    console.error("Geolocation not supported in this browser.");
     showError("Geolocation is not supported by this browser.");
     contentContainer.innerHTML = "<p>Geolocation is not supported by this browser.</p>";
   }
