@@ -60,8 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.className = '';
 
         // Set location-specific background
-        const locationClass = locationMap[`${lat},${lng}`] || '';
-        document.body.classList.add(locationClass);
+        const locationKey = `${lat},${lng}`;
+        const locationClass = locationMap[locationKey];
+
+        // Safely add class only if it exists
+        if (locationClass) {
+            document.body.classList.add(locationClass);
+        }
 
         resultsContainer.innerHTML = `
             <div class="result-card">
