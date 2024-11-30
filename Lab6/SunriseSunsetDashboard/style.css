@@ -431,7 +431,7 @@
       rgba(255, 255, 255, 0.1),
       rgba(255, 255, 255, 0.1)
     ),
-    url("./Images/sunriseback.jpg");
+    url("../../Images/sunriseback.jpg");
 }
 
 .sunrise-background {
@@ -439,7 +439,7 @@
       rgba(255, 255, 255, 0.2),
       rgba(255, 255, 255, 0.2)
     ),
-    url("./Images/sunriseback.jpg");
+    url("../../Images/sunriseback.jpg");
 }
 
 .sunset-background {
@@ -447,7 +447,7 @@
       rgba(255, 255, 255, 0.2),
       rgba(255, 255, 255, 0.2)
     ),
-    url("./Images/sunset-back.webp");
+    url("../../Images/sunset-back.webp");
 }
 
 .sunrise-content-container {
