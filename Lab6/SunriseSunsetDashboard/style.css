@@ -156,7 +156,7 @@ select, button {
 /* Location-specific Backgrounds with Images */
 body.new-york { background: url('https://example.com/images/sunrise-new-york.jpg') no-repeat center center fixed; background-size: cover; }
 body.los-angeles { background: url('https://example.com/images/sunset-los-angeles.jpg') no-repeat center center fixed; background-size: cover; }
-body.chicago { background: url('./Images/chicago.jpg') no-repeat center center fixed; background-size: cover; }
+body.chicago { background: url('https://example.com/images/chicago.jpg') no-repeat center center fixed; background-size: cover; background-size: cover; }
 body.houston { background: url('https://example.com/images/sunset-houston.jpg') no-repeat center center fixed; background-size: cover; }
 body.phoenix { background: url('https://example.com/images/sunrise-phoenix.jpg') no-repeat center center fixed; background-size: cover; }
 body.san-antonio { background: url('https://example.com/images/sunset-san-antonio.jpg') no-repeat center center fixed; background-size: cover; }
