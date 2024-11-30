@@ -1,11 +1,9 @@
 :root {
-  --primary-bg: #f0f2f5;
-  --card-bg: #ffffff;
-  --primary-text: #1a1a1a;
-  --secondary-text: #4a4a4a;
-  --accent-color: #3498db;
-  --border-color: #e1e4e8;
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --primary-text: #ffffff;
+  --secondary-text: rgba(255, 255, 255, 0.9);
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --accent-color: #ffd700;
+  --border-color: rgba(255, 255, 255, 0.2);
   --card-radius: 12px;
 }
 
@@ -17,16 +15,43 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background-color: var(--primary-bg);
   color: var(--primary-text);
   line-height: 1.6;
-  padding: 2rem 0;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #1e3c72, #2a5298);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+      radial-gradient(circle at 20% 30%, rgba(255, 165, 0, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 99, 71, 0.2) 0%, transparent 50%),
+      url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>') center/50px 50px;
+  z-index: -1;
+  animation: backgroundFlow 20s linear infinite;
+}
+
+@keyframes backgroundFlow {
+  0% {
+      background-position: 0% 0%, 100% 100%, 0 0;
+  }
+  100% {
+      background-position: 100% 100%, 0% 0%, 50px 50px;
+  }
 }
 
 .container {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 2rem 1.5rem;
+  position: relative;
 }
 
 header {
@@ -35,11 +60,11 @@ header {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   font-weight: 700;
-  color: var(--primary-text);
+  color: var(--accent-color);
   margin-bottom: 2.5rem;
-  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .location-controls {
@@ -51,30 +76,34 @@ h1 {
 }
 
 select, button {
-  padding: 0.75rem 1.25rem;
+  padding: 0.875rem 1.5rem;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--primary-text);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
 select {
   flex: 1;
   min-width: 250px;
-  color: var(--primary-text);
+}
+
+select option {
+  background: #2a5298;
+  color: white;
 }
 
 .location-btn {
-  background: var(--accent-color);
-  color: white;
-  border: none;
-  white-space: nowrap;
+  background: rgba(255, 215, 0, 0.2);
+  border: 1px solid var(--accent-color);
 }
 
 .location-btn:hover {
-  background: #2980b9;
+  background: rgba(255, 215, 0, 0.3);
 }
 
 .dashboard {
@@ -88,15 +117,17 @@ select {
   background: var(--card-bg);
   padding: 2.5rem;
   border-radius: var(--card-radius);
-  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
 }
 
 .day-panel h2 {
   font-size: 1.75rem;
-  color: var(--primary-text);
+  color: var(--accent-color);
   margin-bottom: 2rem;
   text-align: center;
   font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .time-grid {
@@ -109,9 +140,14 @@ select {
 .time-card {
   text-align: center;
   padding: 1.5rem;
-  background: var(--primary-bg);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
-  transition: transform 0.2s ease;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease;
+}
+
+.time-card:hover {
+  transform: translateY(-5px);
 }
 
 .time-card i {
@@ -155,20 +191,22 @@ select {
   background: var(--card-bg);
   padding: 1.5rem;
   border-radius: var(--card-radius);
-  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
   max-width: 600px;
   margin: 0 auto 3rem;
+  backdrop-filter: blur(10px);
 }
 
 .error-message {
   display: none;
-  background: #fee2e2;
-  color: #991b1b;
+  background: rgba(220, 38, 38, 0.2);
+  color: #fecaca;
   padding: 1rem 1.5rem;
   border-radius: 8px;
   margin: 2rem auto;
   max-width: 600px;
   text-align: center;
+  border: 1px solid rgba(220, 38, 38, 0.4);
 }
 
 footer {
@@ -188,7 +226,7 @@ footer a:hover {
 
 @media (max-width: 768px) {
   .container {
-      padding: 0 1rem;
+      padding: 1rem;
   }
 
   .dashboard {
