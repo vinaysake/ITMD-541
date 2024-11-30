@@ -7,111 +7,46 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="overlay"></div>
     <div class="container">
         <header>
-            <h1>Sunrise Sunset Dashboard</h1>
-            <p>Powered by <a href="https://sunrisesunset.io/api/" target="_blank">Sunrise Sunset API</a></p>
+            <h1>Sunrise Sunset Explorer</h1>
+            <p>Powered by Sunrise Sunset API (https://sunrisesunset.io/api/)</p>
         </header>
 
         <main>
-            <section class="search-section">
-                <div class="location-select">
-                    <label for="location-dropdown">Select Location:</label>
-                    <select id="location-dropdown">
-                        <option value="">Choose a Location</option>
-                        <option value="40.7128,-74.0060">New York City, NY</option>
-                        <option value="34.0522,-118.2437">Los Angeles, CA</option>
-                        <option value="41.8781,-87.6298">Chicago, IL</option>
-                        <option value="29.7604,-95.3698">Houston, TX</option>
-                        <option value="33.4484,-112.0740">Phoenix, AZ</option>
-                        <option value="39.9526,-75.1652">Philadelphia, PA</option>
-                        <option value="38.9072,-77.0369">Washington, D.C.</option>
-                        <option value="25.7617,-80.1918">Miami, FL</option>
-                        <option value="37.7749,-122.4194">San Francisco, CA</option>
-                        <option value="42.3601,-71.0589">Boston, MA</option>
-                    </select>
-                </div>
-
-                <div class="geolocation-search">
-                    <button id="current-location-btn">Use My Current Location</button>
-                </div>
+            <section class="location-selector">
+                <label for="location-select">Select Location:</label>
+                <select id="location-select">
+                    <option value="">Choose a Location</option>
+                    <option value="40.7128,-74.0060">New York, NY</option>
+                    <option value="34.0522,-118.2437">Los Angeles, CA</option>
+                    <option value="41.8781,-87.6298">Chicago, IL</option>
+                    <option value="29.7604,-95.3698">Houston, TX</option>
+                    <option value="33.4484,-112.0740">Phoenix, AZ</option>
+                    <option value="29.4241,-98.4936">San Antonio, TX</option>
+                    <option value="32.7767,-96.7970">Dallas, TX</option>
+                    <option value="37.7749,-122.4194">San Francisco, CA</option>
+                    <option value="39.1031,-84.5120">Cincinnati, OH</option>
+                    <option value="42.3601,-71.0589">Boston, MA</option>
+                    <option value="47.6062,-122.3321">Seattle, WA</option>
+                </select>
+                
+                <button id="current-location-btn">Use Current Location</button>
             </section>
 
-            <section id="results-section" class="results-section">
+            <section id="results" class="results-container">
                 <div class="placeholder">
-                    <p>Select a location to view sunrise and sunset information</p>
-                </div>
-                <div id="today-results" class="results-container">
-                    <h2>Today</h2>
-                    <div class="result-grid">
-                        <div class="result-item">
-                            <h3>Sunrise</h3>
-                            <p id="today-sunrise">--:--</p>
-                        </div>
-                        <div class="result-item">
-                            <h3>Sunset</h3>
-                            <p id="today-sunset">--:--</p>
-                        </div>
-                        <div class="result-item">
-                            <h3>Dawn</h3>
-                            <p id="today-dawn">--:--</p>
-                        </div>
-                        <div class="result-item">
-                            <h3>Dusk</h3>
-                            <p id="today-dusk">--:--</p>
-                        </div>
-                        <div class="result-item">
-                            <h3>Day Length</h3>
-                            <p id="today-day-length">--:--</p>
-                        </div>
-                        <div class="result-item">
-                            <h3>Solar Noon</h3>
-                            <p id="today-solar-noon">--:--</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tomorrow-results" class="results-container">
-                    <h2>Tomorrow</h2>
-                    <div class="result-grid">
-                        <div class="result-item">
-                            <h3>Sunrise</h3>
-                            <p id="tomorrow-sunrise">--:--</p>
-                        </div>
-                        <div class="result-item">
-                            <h3>Sunset</h3>
-                            <p id="tomorrow-sunset">--:--</p>
-                        </div>
-                        <div class="result-item">
-                            <h3>Dawn</h3>
-                            <p id="tomorrow-dawn">--:--</p>
-                        </div>
-                        <div class="result-item">
-                            <h3>Dusk</h3>
-                            <p id="tomorrow-dusk">--:--</p>
-                        </div>
-                        <div class="result-item">
-                            <h3>Day Length</h3>
-                            <p id="tomorrow-day-length">--:--</p>
-                        </div>
-                        <div class="result-item">
-                            <h3>Solar Noon</h3>
-                            <p id="tomorrow-solar-noon">--:--</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="timezone-info" class="timezone-container">
-                    <h3>Time Zone</h3>
-                    <p id="timezone-display">--</p>
-                </div>
-
-                <div id="error-section" class="error-container">
-                    <p id="error-message"></p>
+                    <p>Select a location to view sunrise and sunset times</p>
                 </div>
             </section>
         </main>
+    </div>
+
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="error-message"></p>
+        </div>
     </div>
 
     <script src="script.js"></script>
