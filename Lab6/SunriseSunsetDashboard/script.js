@@ -1,134 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const locationSelect = document.getElementById('location-select');
-    const currentLocationBtn = document.getElementById('current-location-btn');
-    const resultsContainer = document.getElementById('results');
-    const errorModal = document.getElementById('error-modal');
-    const errorMessage = document.getElementById('error-message');
-    const closeError = document.querySelector('.close');
-    const loadingOverlay = document.getElementById('loading');
+    const locationSelect = document.getElementById('locationSelect');
+    const getCurrentLocationBtn = document.getElementById('getCurrentLocation');
+    const errorMessage = document.getElementById('errorMessage');
 
-    const locationMap = {
-        '40.7128,-74.0060': 'new-york',
-        '34.0522,-118.2437': 'los-angeles',
-        '41.8781,-87.6298': 'chicago',
-        '29.7604,-95.3698': 'houston',
-        '33.4484,-112.0740': 'phoenix',
-        '29.4241,-98.4936': 'san-antonio',
-        '32.7767,-96.7970': 'dallas',
-        '37.7749,-122.4194': 'san-francisco',
-        '39.1031,-84.5120': 'cincinnati',
-        '42.3601,-71.0589': 'boston',
-        '47.6062,-122.3321': 'seattle',
-        '25.7617,-80.1918': 'miami',
-        '39.9526,-75.1652': 'philadelphia'
-    };
-
-    function showLoading() {
-        loadingOverlay.style.display = 'flex';
-    }
-
-    function hideLoading() {
-        loadingOverlay.style.display = 'none';
-    }
-
-    function showError(message) {
-        errorMessage.textContent = message;
-        errorModal.style.display = 'block';
-    }
-
-    closeError.onclick = () => {
-        errorModal.style.display = 'none';
-    }
-
+    // Function to fetch data from the API
     async function fetchSunriseSunsetData(latitude, longitude) {
-        const today = new Date().toISOString().split('T')[0];
-        const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-
         try {
-            showLoading();
-            const todayResponse = await fetch(`https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&date=${today}&timezone=UTC`);
-            const tomorrowResponse = await fetch(`https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&date=${tomorrow}&timezone=UTC`);
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
 
+            // Fetch today's data
+            const todayResponse = await fetch(`https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&date=${formatDate(today)}`);
             const todayData = await todayResponse.json();
+
+            // Fetch tomorrow's data
+            const tomorrowResponse = await fetch(`https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&date=${formatDate(tomorrow)}`);
             const tomorrowData = await tomorrowResponse.json();
 
-            if (todayData.status !== 'OK' || tomorrowData.status !== 'OK') {
-                throw new Error('Failed to retrieve data');
+            if (todayData.status === 'OK' && tomorrowData.status === 'OK') {
+                updateDashboard('today', todayData.results);
+                updateDashboard('tomorrow', tomorrowData.results);
+                document.getElementById('timezone').textContent = todayData.results.timezone;
+                errorMessage.style.display = 'none';
+            } else {
+                throw new Error('Failed to fetch data');
             }
-
-            displayResults(todayData.results, tomorrowData.results, latitude, longitude);
         } catch (error) {
-            showError('Error fetching sunrise/sunset data: ' + error.message);
-        } finally {
-            hideLoading();
+            showError('Failed to fetch sunrise/sunset data. Please try again.');
         }
     }
 
-    function displayResults(todayResults, tomorrowResults, lat, lng) {
-        // Reset background - use classList.remove to be more specific
-        document.body.classList.remove(...document.body.classList);
-
-        // Set location-specific background
-        const locationKey = `${lat},${lng}`;
-        const locationClass = locationMap[locationKey];
-
-        if (locationClass) {
-            document.body.classList.add(locationClass);
-        } else {
-            // If no specific class, add a default background
-            document.body.classList.add('default-background');
-        }
-
-        resultsContainer.innerHTML = `
-            <div class="result-card">
-                <h3><i class="fas fa-sunrise"></i> Today's Sunrise</h3>
-                <p>${todayResults.sunrise}</p>
-            </div>
-            <div class="result-card">
-                <h3><i class="fas fa-sunset"></i> Today's Sunset</h3>
-                <p>${todayResults.sunset}</p>
-            </div>
-            <div class="result-card">
-                <h3><i class="fas fa-moon"></i> Today's Dawn</h3>
-                <p>${todayResults.dawn}</p>
-            </div>
-            <div class="result-card">
-                <h3><i class="fas fa-cloud-sun"></i> Today's Dusk</h3>
-                <p>${todayResults.dusk}</p>
-            </div>
-            <div class="result-card">
-                <h3><i class="fas fa-clock"></i> Today's Day Length</h3>
-                <p>${todayResults.day_length}</p>
-            </div>
-            <div class="result-card">
-                <h3><i class="fas fa-sun"></i> Today's Solar Noon</h3>
-                <p>${todayResults.solar_noon}</p>
-            </div>
-            <div class="result-card">
-                <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
-                <p>Latitude: ${lat}<br>Longitude: ${lng}<br>Timezone: UTC</p>
-            </div>
-        `;
+    // Function to update the dashboard
+    function updateDashboard(day, data) {
+        const prefix = day === 'today' ? 'today' : 'tomorrow';
+        document.getElementById(`${prefix}Sunrise`).textContent = data.sunrise;
+        document.getElementById(`${prefix}Sunset`).textContent = data.sunset;
+        document.getElementById(`${prefix}Dawn`).textContent = data.dawn;
+        document.getElementById(`${prefix}Dusk`).textContent = data.dusk;
+        document.getElementById(`${prefix}DayLength`).textContent = data.day_length;
+        document.getElementById(`${prefix}SolarNoon`).textContent = data.solar_noon;
     }
 
+    // Function to format date for API
+    function formatDate(date) {
+        return date.toISOString().split('T')[0];
+    }
+
+    // Function to show error message
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+    }
+
+    // Event listener for location select
     locationSelect.addEventListener('change', (e) => {
-        if (e.target.value) {
-            const [latitude, longitude] = e.target.value.split(',');
-            fetchSunriseSunsetData(latitude, longitude);
-        }
+        const [lat, lng] = e.target.value.split(',');
+        fetchSunriseSunsetData(lat, lng);
     });
 
-    currentLocationBtn.addEventListener('click', () => {
+    // Event listener for current location button
+    getCurrentLocationBtn.addEventListener('click', () => {
         if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-                fetchSunriseSunsetData(latitude, longitude);
-            }, (error) => {
-                showError('Error getting current location: ' + error.message);
-            });
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    fetchSunriseSunsetData(
+                        position.coords.latitude,
+                        position.coords.longitude
+                    );
+                },
+                () => {
+                    showError('Unable to retrieve your location. Please select from the dropdown instead.');
+                }
+            );
         } else {
-            showError('Geolocation is not supported by this browser.');
+            showError('Geolocation is not supported by your browser. Please select from the dropdown instead.');
         }
     });
 });
