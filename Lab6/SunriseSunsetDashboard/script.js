@@ -5,6 +5,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const getCurrentLocationBtn = document.getElementById('getCurrentLocation');
     const errorMessage = document.getElementById('errorMessage');
 
+    // Initialize and update date/time display
+    function updateDateTime() {
+        const now = new Date();
+        
+        // Update date with full format
+        const dateOptions = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        };
+        document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', dateOptions);
+        
+        // Update time with seconds
+        const timeOptions = { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit', 
+            hour12: true 
+        };
+        document.getElementById('currentTime').textContent = now.toLocaleTimeString('en-US', timeOptions);
+    }
+
+    // Start the clock and update every second
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
     /**
      * Fetches sunrise and sunset data for a given location
      * Makes two API calls - one for today and one for tomorrow
