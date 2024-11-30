@@ -1,115 +1,317 @@
-// Get elements from the DOM
-const locationSelect = document.getElementById("location");
-const currentLocationBtn = document.getElementById("current-location-btn");
-const results = document.getElementById("results");
+//Header Functionality //
+let latitude;
+let longitude;
+const menuButton = document.getElementById("menuBtn");
+const hambargeButton = document.getElementById("hambargBtn");
+const cancelButton = document.getElementById("cancelBtn");
+const navMenuMobile = document.getElementById("navMenuMobile");
+const findMyLocationBtn = document.getElementById("findMyLocationBtn");
 
-// List of locations with their coordinates
-const locations = {
-    "New York, USA": { lat: 40.7128, lon: -74.0060 },
-    "London, UK": { lat: 51.5074, lon: -0.1278 },
-    "Tokyo, Japan": { lat: 35.6762, lon: 139.6503 },
-    "Sydney, Australia": { lat: -33.8688, lon: 151.2093 },
-    "Paris, France": { lat: 48.8566, lon: 2.3522 },
-    "Berlin, Germany": { lat: 52.5200, lon: 13.4050 },
-    "Rio de Janeiro, Brazil": { lat: -22.9068, lon: -43.1729 },
-    "Cape Town, South Africa": { lat: -33.9249, lon: 18.4241 },
-    "Dubai, UAE": { lat: 25.276987, lon: 55.296249 },
-    "Moscow, Russia": { lat: 55.7558, lon: 37.6173 }
+menuButton.addEventListener("click", () => {
+  hambargeButton.classList.toggle("hambar-btn");
+  cancelButton.classList.toggle("cancel-btn");
+  navMenuMobile.classList.toggle("nav-menu-mobile");
+});
+
+//Search The City //
+const searchField = document.getElementById("searchField");
+const searchButton = document.getElementById("searchButton");
+
+// searchField.addEventListener("change", (event) => {});
+const todayDateObj = new Date();
+const tomorrowDateObj = new Date();
+tomorrowDateObj.setDate(todayDateObj.getDate() + 1);
+console.log(tomorrowDateObj.toLocaleString("en-US"));
+
+//Add Result container//
+const addResultsContainer = (todaysData, tomorrowsData) => {
+  const contentContainer = document.getElementById("contentContainer");
+  const options = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  };
+  const todayFormateDate = todayDateObj.toLocaleDateString("en-US", options);
+  const tomorrowFormatDate = tomorrowDateObj.toLocaleDateString(
+    "en-US",
+    options
+  );
+  const createElements = `<div class="explore-container">
+          <div>
+            <h3 class="sunrise-sunset-heading">
+              What Time is Sunrise and Sunset in
+              <span>${searchField.value}</span>
+            </h3>
+            <p class="sunrise-sunset-description">
+              Here are today's sunrise and sunset times in
+              <span>${searchField.value}</span>
+            </p>
+            <div>
+              <div class="sunrise-and-sunset-btn-container">
+                <button type="button" class="btn sunrise-btn" id="sunriseButton">
+                  Sunrise
+                </button>
+                <button type="button" class="btn sunset-btn" id="sunsetButton">
+                  Sunset
+                </button>
+              </div>
+              <div id="sunriseContainer">
+                <div class="sunrise-container">
+                  <div class="sunrise-content-container sunrise-background">
+                    <p class="timezone">TimeZone: ${todaysData.timezone}</p>
+                    <h5 class="day-heading">Today</h5>
+                    <p class="date">${todayFormateDate}</p>
+                    <h5 class="day-type-heading">Sunrise</h5>
+                    <img
+                      src=${"./Images/logo3.jpg"}
+                      alt="sunImage"
+                      class="sun-image"
+                    />
+                    <p class="day-type-time">${todaysData.sunrise}</p>
+                    <p class="first-day-type-time">dawn: ${todaysData.dawn}</p>
+                    <p class="day-type-description">
+                      Sunrise today in <span>${searchField.value}</span> was at
+                      ${todaysData.sunrise} IST
+                    </p>
+                    <div class="day-length-solar-container">
+                      <p class="day-length">Day length: ${
+                        todaysData.day_length
+                      }</p>
+                      <p class="solar-noon">Solar Noon: ${
+                        todaysData.solar_noon
+                      }</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="sunrise-container">
+                  <div class="sunrise-content-container sunrise-background">
+                    <p class="timezone">TimeZone: ${tomorrowsData.timezone}</p>
+                    <h5 class="day-heading">Tomorrow</h5>
+                    <p class="date">${tomorrowFormatDate}</p>
+                    <h5 class="day-type-heading">Sunrise</h5>
+                    <img
+                      src=${"./Images/logo3.jpg"}
+                      alt="sunImage"
+                      class="sun-image"
+                    />
+                    <p class="day-type-time">${tomorrowsData.sunrise}</p>
+                    <p class="first-day-type-time">dawn: ${
+                      tomorrowsData.dawn
+                    }</p>
+                    <p class="day-type-description">
+                      Sunrise tomorrow in <span>${
+                        searchField.value
+                      }</span> will be at
+                      ${tomorrowsData.sunrise} IST
+                    </p>
+                    <div class="day-length-solar-container">
+                      <p class="day-length">Day length: ${
+                        tomorrowsData.day_length
+                      }</p>
+                      <p class="solar-noon">Solar Noon: ${
+                        tomorrowsData.solar_noon
+                      }</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="sunsetContainer" class="sunset-main-container">
+                <div class="sunrise-container">
+                  <div class="sunrise-content-container sunset-background">
+                    <p class="timezone">TimeZone: ${todaysData.timezone}</p>
+                    <h5 class="day-heading">Today</h5>
+                    <p class="date">${todayFormateDate}</p>
+                    <h5 class="day-type-heading">Sunset</h5>
+                    <img
+                      src=${"./Images/logo2.jpg"}
+                      alt="sunImage"
+                      class="sun-image"
+                    />
+                    <p class="day-type-time">${todaysData.sunset}</p>
+                    <p class="first-day-type-time">dusk: ${todaysData.dusk}</p>
+                    <p class="day-type-description">
+                      Sunset Today in <span>${
+                        searchField.value
+                      }</span> will be at ${todaysData.sunset}
+                      IST
+                    </p>
+                    <div class="day-length-solar-container">
+                      <p class="day-length">Day length: ${
+                        todaysData.day_length
+                      }</p>
+                      <p class="solar-noon">Solar Noon: ${
+                        todaysData.solar_noon
+                      }</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="sunrise-container">
+                  <div class="sunrise-content-container sunset-background">
+                    <p class="timezone">TimeZone: ${tomorrowsData.timezone}</p>
+                    <h5 class="day-heading">Tomorrow</h5>
+                    <p class="date">${tomorrowFormatDate}</p>
+                    <h5 class="day-type-heading">Sunset</h5>
+                    <img
+                      src=${"./Images/logo2.jpg"}
+                      alt="sunImage"
+                      class="sun-image"
+                    />
+                    <p class="day-type-time">${tomorrowsData.sunset}</p>
+                    <p class="first-day-type-time">dusk: ${
+                      tomorrowsData.dusk
+                    }</p>
+                    <p class="day-type-description">
+                      Sunset tomorrow in <span>${
+                        searchField.value
+                      }</span> will be at ${tomorrowsData.sunset}
+                      IST
+                    </p>
+                    <div class="day-length-solar-container">
+                      <p class="day-length">Day length: ${
+                        tomorrowsData.day_length
+                      }</p>
+                      <p class="solar-noon">Solar Noon: ${
+                        tomorrowsData.solar_noon
+                      }</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+  contentContainer.innerHTML = createElements;
+  const sunriseContainer = document.getElementById("sunriseContainer");
+  const sunsetContainer = document.getElementById("sunsetContainer");
+  const sunriseButton = document.getElementById("sunriseButton");
+  const sunsetButton = document.getElementById("sunsetButton");
+
+  sunriseButton.addEventListener("click", () => {
+    sunriseContainer.classList.remove("sunrise-main-container");
+    sunsetContainer.classList.add("sunset-main-container");
+  });
+
+  sunsetButton.addEventListener("click", () => {
+    sunriseContainer.classList.add("sunrise-main-container");
+    sunsetContainer.classList.remove("sunset-main-container");
+  });
 };
 
-// Function to fetch sunrise and sunset data from the API
-async function fetchSunriseSunset(lat, lon) {
-    const apiUrl = `https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}&formatted=0`;
-
+const getTodaySunsetAndSunriseData = async () => {
+  if (latitude === undefined && longitude === undefined) {
+    alert("this is from sunrise sunset : Something went wrong");
+  } else {
     try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-
-        if (data.status === "OK") {
-            updateDashboard(data.results);
-        } else {
-            throw new Error("Failed to fetch data");
-        }
+      const url = `https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}`;
+      const option = {
+        method: "GET",
+      };
+      const response = await fetch(url, option);
+      const data = await response.json();
+      const todaysDay = data.results;
+      return todaysDay;
     } catch (error) {
-        results.innerHTML = "<p>Error fetching data. Please try again later.</p>";
-        console.error("Error:", error);
+      alert("Something went wrong");
     }
-}
+  }
+};
 
-// Function to update the UI with the fetched data
-function updateDashboard(data) {
-    const { sunrise, sunset, dawn, dusk, day_length, solar_noon, timezone } = data;
+const getTomorrowSunriseAndSunsetData = async () => {
+  const formateDate = `${tomorrowDateObj.getFullYear()}-${tomorrowDateObj.getMonth()}-${tomorrowDateObj.getDate()}`;
+  if (latitude === undefined && longitude === undefined) {
+    alert("Someting Went wrong");
+  } else {
+    try {
+      const url = `https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&timezone=IST&date=${formateDate}`;
+      const option = {
+        method: "GET",
+      };
+      const response = await fetch(url, option);
+      const data = await response.json();
+      const tomorrowsData = data.results;
+      return tomorrowsData;
+    } catch (error) {
+      alert("Something went wrong");
+    }
+  }
+};
 
-    results.innerHTML = `
-        <p><strong>Sunrise:</strong> ${formatTime(sunrise)}</p>
-        <p><strong>Sunset:</strong> ${formatTime(sunset)}</p>
-        <p><strong>Dawn (Civil Twilight Begin):</strong> ${dawn ? formatTime(dawn) : 'N/A'}</p>
-        <p><strong>Dusk (Civil Twilight End):</strong> ${dusk ? formatTime(dusk) : 'N/A'}</p>
-        <p><strong>Day Length:</strong> ${formatTime(day_length)}</p>
-        <p><strong>Solar Noon:</strong> ${formatTime(solar_noon)}</p>
-        <p><strong>Time Zone:</strong> ${timezone}</p>
-    `;
-}
-
-// Function to format time to a readable format (12-hour format with AM/PM)
-function formatTime(time) {
-    const date = new Date(time);
-    const options = { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true };
-    return date.toLocaleTimeString([], options);
-}
-
-// Event listener for when a location is selected from the dropdown
-locationSelect.addEventListener("change", (event) => {
-    const selectedLocation = event.target.value;
-    const { lat, lon } = locations[selectedLocation];
-    fetchSunriseSunset(lat, lon);
-});
-
-// Event listener for when the user clicks on the "Use Current Location" button
-currentLocationBtn.addEventListener("click", () => {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const { latitude, longitude } = position.coords;
-                fetchSunriseSunset(latitude, longitude);
-            },
-            (error) => {
-                handleLocationError(error);
-            },
-            {
-                timeout: 10000, // Timeout after 10 seconds if location is not retrieved
-                enableHighAccuracy: true // Request high accuracy if possible
-            }
-        );
+const gettingLatitudeAndLongitudeOfCity = async () => {
+  try {
+    const cityName = searchField.value;
+    
+    const url = `https://geocode.maps.co/search?q=${cityName}`;
+    const option = {
+      method: "GET",
+    };
+    const response = await fetch(url, option);
+    const data = await response.json();
+    if (data.length === 0) {
+      console.log(data);
+      alert("No city is found");
     } else {
-        results.innerHTML = "<p>Geolocation is not supported by this browser.</p>";
+      latitude = data[0].lat;
+      longitude = data[0].lon;
+      const todaysData = await getTodaySunsetAndSunriseData();
+      const tomorrowsData = await getTomorrowSunriseAndSunsetData();
+      addResultsContainer(todaysData, tomorrowsData);
     }
+    // window.location.href = "/sample.html";
+  } catch (error) {
+    alert("This from geolocation : Something went wrong");
+  }
+};
+
+searchButton.addEventListener("click", () => {
+  if (searchField.value === "") {
+    alert("Please enter cityname in search field");
+  } else {
+    gettingLatitudeAndLongitudeOfCity();
+  }
 });
 
-// Function to handle geolocation errors
-function handleLocationError(error) {
-    switch (error.code) {
-        case error.PERMISSION_DENIED:
-            results.innerHTML = "<p>Permission denied. Please allow location access in your browser settings.</p>";
-            break;
-        case error.POSITION_UNAVAILABLE:
-            results.innerHTML = "<p>Location information is unavailable. Please try again.</p>";
-            break;
-        case error.TIMEOUT:
-            results.innerHTML = "<p>The request to get user location timed out.</p>";
-            break;
-        case error.UNKNOWN_ERROR:
-            results.innerHTML = "<p>An unknown error occurred.</p>";
-            break;
-        default:
-            results.innerHTML = "<p>Unable to retrieve your location. Please try again later.</p>";
+searchField.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    gettingLatitudeAndLongitudeOfCity();
+  }
+});
+//Add Current Location Button
+
+function getGeoLocation() {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+
+      handleGeolocationSuccess();
+    },
+    (error) => {
+      alert("Something went wrong");
     }
+  );
 }
 
-// Initialize the dashboard with default location data (e.g., New York)
-document.addEventListener("DOMContentLoaded", () => {
-    const defaultLocation = "New York, USA";
-    locationSelect.value = defaultLocation;
-    const { lat, lon } = locations[defaultLocation];
-    fetchSunriseSunset(lat, lon);
+findMyLocationBtn.addEventListener("click", () => {
+  getGeoLocation();
+});
+
+async function handleGeolocationSuccess() {
+  const todaysData = await getTodaySunsetAndSunriseData();
+  const tomorrowsData = await getTomorrowSunriseAndSunsetData();
+
+  addResultsContainer(todaysData, tomorrowsData);
+}
+
+const largeFindMyLocationLink = document.getElementById("largeFindMyLocation");
+const mobileFindMyLocationLink = document.getElementById(
+  "mobileFindMyLocation"
+);
+
+largeFindMyLocationLink.addEventListener("click", () => {
+  getGeoLocation();
+});
+
+mobileFindMyLocationLink.addEventListener("click", () => {
+  getGeoLocation();
 });
