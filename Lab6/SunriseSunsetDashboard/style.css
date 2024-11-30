@@ -153,17 +153,17 @@ select, button {
   }
 }
 
-/* Location-specific Backgrounds */
-body.new-york { background: linear-gradient(to bottom, #FF4500, #FFD700); }
-body.los-angeles { background: linear-gradient(to bottom, #FF6347, #FFFACD); }
-body.chicago { background: linear-gradient(to bottom, #8B0000, #FF7F50); }
-body.houston { background: linear-gradient(to bottom, #FF1493, #FFA500); }
-body.phoenix { background: linear-gradient(to bottom, #8B0000, #FFD700); }
-body.san-antonio { background: linear-gradient(to bottom, #FF7F50, #FFFACD); }
-body.dallas { background: linear-gradient(to bottom, #8B0000, #FF7F50); }
-body.san-francisco { background: linear-gradient(to bottom, #4682B4, #FFA500); }
-body.cincinnati { background: linear-gradient(to bottom, #8B0000, #FFD700); }
-body.boston { background: linear-gradient(to bottom, #4B0082, #FFA500); }
-body.seattle { background: linear-gradient(to bottom, #191970, #FFA500); }
-body.miami { background: linear-gradient(to bottom, #FF69B4, #FFD700); }
-body.philadelphia { background: linear-gradient(to bottom, #4682B4, #FF7F50); }
+/* Location-specific Backgrounds with Images */
+body.new-york { background: url('https://example.com/images/sunrise-new-york.jpg') no-repeat center center fixed; background-size: cover; }
+body.los-angeles { background: url('https://example.com/images/sunset-los-angeles.jpg') no-repeat center center fixed; background-size: cover; }
+body.chicago { background: url('https://example.com/images/sunset-chicago.jpg') no-repeat center center fixed; background-size: cover; }
+body.houston { background: url('https://example.com/images/sunset-houston.jpg') no-repeat center center fixed; background-size: cover; }
+body.phoenix { background: url('https://example.com/images/sunrise-phoenix.jpg') no-repeat center center fixed; background-size: cover; }
+body.san-antonio { background: url('https://example.com/images/sunset-san-antonio.jpg') no-repeat center center fixed; background-size: cover; }
+body.dallas { background: url('https://example.com/images/sunset-dallas.jpg') no-repeat center center fixed; background-size: cover; }
+body.san-francisco { background: url('https://example.com/images/sunrise-san-francisco.jpg') no-repeat center center fixed; background-size: cover; }
+body.cincinnati { background: url('https://example.com/images/sunset-cincinnati.jpg') no-repeat center center fixed; background-size: cover; }
+body.boston { background: url('https://example.com/images/sunrise-boston.jpg') no-repeat center center fixed; background-size: cover; }
+body.seattle { background: url('https://example.com/images/sunset-seattle.jpg') no-repeat center center fixed; background-size: cover; }
+body.miami { background: url('https://example.com/images/sunrise-miami.jpg') no-repeat center center fixed; background-size: cover; }
+body.philadelphia { background: url('https://example.com/images/sunset-philadelphia.jpg') no-repeat center center fixed; background-size: cover; }
