@@ -3,18 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const getCurrentLocationBtn = document.getElementById('getCurrentLocation');
     const errorMessage = document.getElementById('errorMessage');
 
-    // Function to fetch data from the API
     async function fetchSunriseSunsetData(latitude, longitude) {
         try {
             const today = new Date();
             const tomorrow = new Date(today);
             tomorrow.setDate(tomorrow.getDate() + 1);
 
-            // Fetch today's data
             const todayResponse = await fetch(`https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&date=${formatDate(today)}`);
             const todayData = await todayResponse.json();
 
-            // Fetch tomorrow's data
             const tomorrowResponse = await fetch(`https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&date=${formatDate(tomorrow)}`);
             const tomorrowData = await tomorrowResponse.json();
 
@@ -31,9 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Function to update the dashboard
     function updateDashboard(day, data) {
-        const prefix = day === 'today' ? 'today' : 'tomorrow';
+        const prefix = day;
         document.getElementById(`${prefix}Sunrise`).textContent = data.sunrise;
         document.getElementById(`${prefix}Sunset`).textContent = data.sunset;
         document.getElementById(`${prefix}Dawn`).textContent = data.dawn;
@@ -42,24 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(`${prefix}SolarNoon`).textContent = data.solar_noon;
     }
 
-    // Function to format date for API
     function formatDate(date) {
         return date.toISOString().split('T')[0];
     }
 
-    // Function to show error message
     function showError(message) {
         errorMessage.textContent = message;
         errorMessage.style.display = 'block';
     }
 
-    // Event listener for location select
     locationSelect.addEventListener('change', (e) => {
         const [lat, lng] = e.target.value.split(',');
         fetchSunriseSunsetData(lat, lng);
     });
 
-    // Event listener for current location button
     getCurrentLocationBtn.addEventListener('click', () => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(

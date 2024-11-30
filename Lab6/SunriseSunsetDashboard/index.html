@@ -4,105 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunrise Sunset Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Sunrise & Sunset Times</h1>
-            <div class="location-controls">
-                <select id="locationSelect">
-                    <option value="" disabled selected>Select a Location</option>
-                    <option value="41.8781,-87.6298">Chicago, IL</option>
-                    <option value="40.7128,-74.0060">New York, NY</option>
-                    <option value="34.0522,-118.2437">Los Angeles, CA</option>
-                    <option value="25.7617,-80.1918">Miami, FL</option>
-                    <option value="47.6062,-122.3321">Seattle, WA</option>
-                    <option value="39.7392,-104.9903">Denver, CO</option>
-                    <option value="29.7604,-95.3698">Houston, TX</option>
-                    <option value="42.3601,-71.0589">Boston, MA</option>
-                    <option value="36.1699,-115.1398">Las Vegas, NV</option>
-                    <option value="45.5155,-122.6789">Portland, OR</option>
-                </select>
-                <button id="getCurrentLocation" class="location-btn">
-                    <i class="fas fa-location-dot"></i> Use Current Location
-                </button>
-            </div>
-        </header>
+    <div class="background-container">
+        <div class="container">
+            <header>
+                <h1>Sunrise & Sunset Times</h1>
+                <div class="location-controls">
+                    <select id="locationSelect">
+                        <option value="" disabled selected>Select a Location</option>
+                        <option value="41.8781,-87.6298">Chicago, IL</option>
+                        <option value="40.7128,-74.0060">New York, NY</option>
+                        <option value="34.0522,-118.2437">Los Angeles, CA</option>
+                        <option value="25.7617,-80.1918">Miami, FL</option>
+                        <option value="47.6062,-122.3321">Seattle, WA</option>
+                        <option value="39.7392,-104.9903">Denver, CO</option>
+                        <option value="29.7604,-95.3698">Houston, TX</option>
+                        <option value="42.3601,-71.0589">Boston, MA</option>
+                        <option value="36.1699,-115.1398">Las Vegas, NV</option>
+                        <option value="45.5155,-122.6789">Portland, OR</option>
+                    </select>
+                    <button id="getCurrentLocation">
+                        <i class="fas fa-location-dot"></i> Use Current Location
+                    </button>
+                </div>
+            </header>
 
-        <main>
-            <div class="dashboard">
-                <div class="day-panel today">
-                    <h2>Today</h2>
-                    <div class="time-grid">
-                        <div class="time-card sunrise">
-                            <i class="fas fa-sunrise"></i>
-                            <h3>Sunrise</h3>
-                            <p id="todaySunrise">--:--</p>
+            <main>
+                <div class="dashboard">
+                    <div class="day-panel today">
+                        <h2>Today</h2>
+                        <div class="time-grid">
+                            <div class="time-card">
+                                <i class="fas fa-sunrise"></i>
+                                <h3>Sunrise</h3>
+                                <p id="todaySunrise">--:--</p>
+                            </div>
+                            <div class="time-card">
+                                <i class="fas fa-sunset"></i>
+                                <h3>Sunset</h3>
+                                <p id="todaySunset">--:--</p>
+                            </div>
+                            <div class="time-card">
+                                <i class="fas fa-cloud-sun"></i>
+                                <h3>Dawn</h3>
+                                <p id="todayDawn">--:--</p>
+                            </div>
+                            <div class="time-card">
+                                <i class="fas fa-cloud-moon"></i>
+                                <h3>Dusk</h3>
+                                <p id="todayDusk">--:--</p>
+                            </div>
                         </div>
-                        <div class="time-card sunset">
-                            <i class="fas fa-sunset"></i>
-                            <h3>Sunset</h3>
-                            <p id="todaySunset">--:--</p>
-                        </div>
-                        <div class="time-card dawn">
-                            <i class="fas fa-cloud-sun"></i>
-                            <h3>Dawn</h3>
-                            <p id="todayDawn">--:--</p>
-                        </div>
-                        <div class="time-card dusk">
-                            <i class="fas fa-cloud-moon"></i>
-                            <h3>Dusk</h3>
-                            <p id="todayDusk">--:--</p>
+                        <div class="additional-info">
+                            <p>Day Length: <span id="todayDayLength">--:--</span></p>
+                            <p>Solar Noon: <span id="todaySolarNoon">--:--</span></p>
                         </div>
                     </div>
-                    <div class="additional-info">
-                        <p>Day Length: <span id="todayDayLength">--:--</span></p>
-                        <p>Solar Noon: <span id="todaySolarNoon">--:--</span></p>
+
+                    <div class="day-panel tomorrow">
+                        <h2>Tomorrow</h2>
+                        <div class="time-grid">
+                            <div class="time-card">
+                                <i class="fas fa-sunrise"></i>
+                                <h3>Sunrise</h3>
+                                <p id="tomorrowSunrise">--:--</p>
+                            </div>
+                            <div class="time-card">
+                                <i class="fas fa-sunset"></i>
+                                <h3>Sunset</h3>
+                                <p id="tomorrowSunset">--:--</p>
+                            </div>
+                            <div class="time-card">
+                                <i class="fas fa-cloud-sun"></i>
+                                <h3>Dawn</h3>
+                                <p id="tomorrowDawn">--:--</p>
+                            </div>
+                            <div class="time-card">
+                                <i class="fas fa-cloud-moon"></i>
+                                <h3>Dusk</h3>
+                                <p id="tomorrowDusk">--:--</p>
+                            </div>
+                        </div>
+                        <div class="additional-info">
+                            <p>Day Length: <span id="tomorrowDayLength">--:--</span></p>
+                            <p>Solar Noon: <span id="tomorrowSolarNoon">--:--</span></p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="day-panel tomorrow">
-                    <h2>Tomorrow</h2>
-                    <div class="time-grid">
-                        <div class="time-card sunrise">
-                            <i class="fas fa-sunrise"></i>
-                            <h3>Sunrise</h3>
-                            <p id="tomorrowSunrise">--:--</p>
-                        </div>
-                        <div class="time-card sunset">
-                            <i class="fas fa-sunset"></i>
-                            <h3>Sunset</h3>
-                            <p id="tomorrowSunset">--:--</p>
-                        </div>
-                        <div class="time-card dawn">
-                            <i class="fas fa-cloud-sun"></i>
-                            <h3>Dawn</h3>
-                            <p id="tomorrowDawn">--:--</p>
-                        </div>
-                        <div class="time-card dusk">
-                            <i class="fas fa-cloud-moon"></i>
-                            <h3>Dusk</h3>
-                            <p id="tomorrowDusk">--:--</p>
-                        </div>
-                    </div>
-                    <div class="additional-info">
-                        <p>Day Length: <span id="tomorrowDayLength">--:--</span></p>
-                        <p>Solar Noon: <span id="tomorrowSolarNoon">--:--</span></p>
-                    </div>
+                <div class="timezone-info">
+                    <p>Time Zone: <span id="timezone">--</span></p>
                 </div>
-            </div>
-            <div class="timezone-info">
-                <p>Time Zone: <span id="timezone">--</span></p>
-            </div>
-        </main>
+            </main>
 
-        <div id="errorMessage" class="error-message"></div>
-        
-        <footer>
-            <p>Powered by <a href="https://sunrisesunset.io/api/" target="_blank">SunriseSunset.io API</a></p>
-        </footer>
+            <div id="errorMessage" class="error-message"></div>
+            
+            <footer>
+                <p>Powered by <a href="https://sunrisesunset.io/api/" target="_blank">SunriseSunset.io API</a></p>
+            </footer>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
