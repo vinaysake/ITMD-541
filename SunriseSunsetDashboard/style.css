@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+select, button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.results {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.results p {
+    margin: 10px 0;
+}
+
+.placeholder {
+    color: #888;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    select, button {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
