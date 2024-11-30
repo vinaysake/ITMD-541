@@ -65,13 +65,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayResults(todayResults, tomorrowResults, lat, lng) {
-        document.body.className = '';
+        // Debug: Log all existing classes before clearing
+        console.log('Existing body classes before reset:', document.body.className);
+
+        // Reset background - use classList.remove to be more specific
+        document.body.classList.remove(...document.body.classList);
+
+        // Set location-specific background
         const locationKey = `${lat},${lng}`;
         const locationClass = locationMap[locationKey];
 
+        console.log('Location Key:', locationKey);
+        console.log('Location Class:', locationClass);
+
+        // Debugging: log all known classes
+        console.log('All location classes:', Object.values(locationMap));
+
+        // Safely add class only if it exists
         if (locationClass) {
             document.body.classList.add(locationClass);
+            console.log('Added class:', locationClass);
+        } else {
+            // If no specific class, add a default background
+            document.body.classList.add('default-background');
+            console.log('Added default background class');
         }
+
+        // Verify class addition
+        console.log('Final body classes:', document.body.className);
 
         resultsContainer.innerHTML = `
             <div class="result-card">
