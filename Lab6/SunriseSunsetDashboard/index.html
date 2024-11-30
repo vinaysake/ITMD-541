@@ -1,192 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Find sunrise and sunset times in your city. Plan your outdoor activities, photography, travel, and farming with ease."
-    />
-    <meta name="keywords" content="sunrise, sunset, times, city, planning, travel, photography, farming" />
-    <meta name="author" content="SunriseSunset Team" />
-    <title>Sunrise & Sunset</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    <div>
-      <nav class="nav-header">
-        <div class="nav-content">
-          <!-- Mobile Logo and Navigation Toggle Button -->
-          <div class="nav-bar-mobile-logo-container">
-            <a href="#">
-              <img
-                class="website-logo mobile-logo"
-                src="./Images/logo.png"
-                alt="Sunrise & Sunset Logo"
-              />
-            </a>
-            <button
-              type="button"
-              class="nav-mobile-btn"
-              id="menuBtn"
-              aria-label="Toggle Navigation Menu"
-            >
-              <span id="hambargBtn"><i class="fa-solid fa-bars"></i></span>
-              <span class="cancel-btn" id="cancelBtn" aria-hidden="true">
-                <i class="fa-solid fa-xmark"></i>
-              </span>
-            </button>
-          </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Sunset Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sunrise Sunset Dashboard</h1>
+            <p>Powered by <a href="https://sunrisesunset.io/api/" target="_blank">Sunrise Sunset API</a></p>
+        </header>
 
-          <!-- Desktop Logo and Navigation Menu -->
-          <div class="nav-bar-large-container">
-            <a href="#">
-              <img
-                class="website-logo desktop-logo"
-                src="./Images/logo.png"
-                alt="Sunrise & Sunset Logo"
-              />
-            </a>
-            <ul class="nav-menu">
-              <li class="nav-menu-item">
-                <a href="#" class="nav-link" id="largeFindMyLocation">
-                  FIND MY LOCATION
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div
-          class="nav-menu-mobile-width nav-menu-mobile"
-          id="navMenuMobile"
-          style="display: none;"
-        >
-          <ul class="nav-menu-list-mobile">
-            <li class="nav-menu-item-mobile" id="mobileFindMyLocation">
-              <a href="#" class="nav-link"> FIND MY LOCATION </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+        <main>
+            <section class="search-section">
+                <div class="location-select">
+                    <label for="location-dropdown">Select Location:</label>
+                    <select id="location-dropdown">
+                        <option value="">Choose a Location</option>
+                        <option value="40.7128,-74.0060">New York City, NY</option>
+                        <option value="34.0522,-118.2437">Los Angeles, CA</option>
+                        <option value="41.8781,-87.6298">Chicago, IL</option>
+                        <option value="29.7604,-95.3698">Houston, TX</option>
+                        <option value="33.4484,-112.0740">Phoenix, AZ</option>
+                        <option value="39.9526,-75.1652">Philadelphia, PA</option>
+                        <option value="38.9072,-77.0369">Washington, D.C.</option>
+                        <option value="25.7617,-80.1918">Miami, FL</option>
+                        <option value="37.7749,-122.4194">San Francisco, CA</option>
+                        <option value="42.3601,-71.0589">Boston, MA</option>
+                    </select>
+                </div>
 
-      <!-- Search Section -->
-      <div class="search-bg-container">
-        <div class="search-container">
-          <h1 class="welcome-heading">Welcome to Sunrise & Sunset</h1>
-          <p class="welcome-description">
-            The tool to find sunrise and sunset times in your city.
-          </p>
-          <input
-            type="search"
-            name="search"
-            class="search-box"
-            placeholder="Look up sunrise & sunset in your city"
-            value=""
-            id="searchField"
-            aria-label="Search city"
-          />
-          <button type="button" class="search-btn" id="searchButton">
-            Search
-          </button>
-          <br />
-          <button
-            type="button"
-            class="find-my-location-btn"
-            id="findMyLocationBtn"
-          >
-            Find my location
-          </button>
-        </div>
-      </div>
+                <div class="geolocation-search">
+                    <button id="current-location-btn">Use My Current Location</button>
+                </div>
+            </section>
 
-      <!-- Content Section -->
-      <div class="content-bg-container" id="contentContainer">
-        <div class="content-container">
-          <h4 class="content-heading">
-            Why would you need to know the sunrise and sunset times?
-          </h4>
-          <p class="description">
-            Have you ever wondered why some people are obsessed with knowing the
-            sunrise and sunset times? It might seem like an insignificant piece
-            of information, but it can actually be quite useful.
-          </p>
-          <p class="description">
-            Knowing the sunrise and sunset times can be useful for a variety of
-            reasons. Here are just a few:
-          </p>
-          <div class="activities-photography-travel-farming-container">
-            <div class="activities-photography-container">
-              <div>
-                <h4 class="content-heading">Planning Outdoor Activities</h4>
-                <p class="description">
-                  If you’re planning outdoor activities like hiking, camping, or
-                  fishing, knowing the sunrise and sunset times can help you
-                  plan your day better. You can start your activities earlier in
-                  the day and avoid getting caught in the dark.
-                </p>
-              </div>
-              <div>
-                <h4 class="content-heading">Photography</h4>
-                <p class="description">
-                  For photographers, the time of day can make a big difference
-                  in the quality of their photos. Knowing the sunrise and sunset
-                  times can help photographers plan their shoots to take
-                  advantage of the best lighting.
-                </p>
-              </div>
-            </div>
-            <div>
-              <div>
-                <h4 class="content-heading">Travel</h4>
-                <p class="description">
-                  When you’re traveling, knowing the sunrise and sunset times
-                  can help you plan your itinerary. You can schedule your
-                  activities around the best light of the day and capture the
-                  best memories of your trip.
-                </p>
-              </div>
-              <div>
-                <h4 class="content-heading">Farming and Agriculture</h4>
-                <p class="description">
-                  For farmers and those involved in agriculture, knowing the
-                  sunrise and sunset times can help them plan their workday.
-                  They can schedule their planting, harvesting, and other
-                  activities around the best times of the day.
-                </p>
-              </div>
-            </div>
-          </div>
-          <p class="description last-description">
-            Knowing the sunrise and sunset times might seem like a small thing,
-            but it can actually make a big difference in your daily life.
-            Whether you’re planning outdoor activities, taking photos,
-            traveling, or working in agriculture, knowing this information can
-            help you make the most of your day.
-          </p>
-        </div>
-      </div>
+            <section id="results-section" class="results-section">
+                <div class="placeholder">
+                    <p>Select a location to view sunrise and sunset information</p>
+                </div>
+                <div id="today-results" class="results-container">
+                    <h2>Today</h2>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <h3>Sunrise</h3>
+                            <p id="today-sunrise">--:--</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Sunset</h3>
+                            <p id="today-sunset">--:--</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Dawn</h3>
+                            <p id="today-dawn">--:--</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Dusk</h3>
+                            <p id="today-dusk">--:--</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Day Length</h3>
+                            <p id="today-day-length">--:--</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Solar Noon</h3>
+                            <p id="today-solar-noon">--:--</p>
+                        </div>
+                    </div>
+                </div>
 
-      <!-- Footer Section -->
-      <footer class="footer-container" id="footer">
-        <p class="copy-right-description">
-          &copy; 2024 Sunrise & Sunset | All Rights Reserved
-        </p>
-        <p class="footer-links">
-          <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> |
-          <a href="#">Contact Us</a>
-        </p>
-      </footer>
+                <div id="tomorrow-results" class="results-container">
+                    <h2>Tomorrow</h2>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <h3>Sunrise</h3>
+                            <p id="tomorrow-sunrise">--:--</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Sunset</h3>
+                            <p id="tomorrow-sunset">--:--</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Dawn</h3>
+                            <p id="tomorrow-dawn">--:--</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Dusk</h3>
+                            <p id="tomorrow-dusk">--:--</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Day Length</h3>
+                            <p id="tomorrow-day-length">--:--</p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Solar Noon</h3>
+                            <p id="tomorrow-solar-noon">--:--</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="timezone-info" class="timezone-container">
+                    <h3>Time Zone</h3>
+                    <p id="timezone-display">--</p>
+                </div>
+
+                <div id="error-section" class="error-container">
+                    <p id="error-message"></p>
+                </div>
+            </section>
+        </main>
     </div>
-    <script src="javascript.js"></script>
-  </body>
-</html>
 
+    <script src="script.js"></script>
+</body>
+</html>

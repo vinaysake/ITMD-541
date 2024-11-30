@@ -1,89 +1,84 @@
-// Utility: Show error message
-const showError = (message) => alert(`Error: ${message}`);
+const API_BASE_URL = 'https://api.sunrisesunset.io/json';
+const locationDropdown = document.getElementById('location-dropdown');
+const currentLocationBtn = document.getElementById('current-location-btn');
+const errorSection = document.getElementById('error-section');
+const errorMessage = document.getElementById('error-message');
 
-// Global variables for latitude and longitude
-let latitude;
-let longitude;
+// Helper function to update result elements
+function updateResultElements(prefix, data) {
+    document.getElementById(`${prefix}-sunrise`).textContent = data.sunrise || '--:--';
+    document.getElementById(`${prefix}-sunset`).textContent = data.sunset || '--:--';
+    document.getElementById(`${prefix}-dawn`).textContent = data.dawn || '--:--';
+    document.getElementById(`${prefix}-dusk`).textContent = data.dusk || '--:--';
+    document.getElementById(`${prefix}-day-length`).textContent = data.day_length || '--:--';
+    document.getElementById(`${prefix}-solar-noon`).textContent = data.solar_noon || '--:--';
+}
 
-// DOM Elements
-const menuButton = document.getElementById("menuBtn");
-const searchButton = document.getElementById("searchButton");
-const searchField = document.getElementById("searchField");
-const findMyLocationBtn = document.getElementById("findMyLocationBtn");
-const contentContainer = document.getElementById("contentContainer");
+// Function to display error
+function displayError(message) {
+    errorSection.style.display = 'block';
+    errorMessage.textContent = message;
+    document.getElementById('today-results').style.display = 'none';
+    document.getElementById('tomorrow-results').style.display = 'none';
+    document.getElementById('timezone-info').style.display = 'none';
+}
 
-// Function to fetch sunrise and sunset times using latitude and longitude
-const fetchSunriseSunset = (lat, lon) => {
-  const apiUrl = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&formatted=0`;
+// Function to fetch sunrise/sunset data
+async function fetchSunriseSunsetData(lat, lng) {
+    try {
+        const today = new Date().toISOString().split('T')[0];
+        const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
 
-  // Fetching sunrise and sunset times
-  fetch(apiUrl)
-    .then((response) => {
-      console.log(response);  // Log the API response to check if it's successful
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);  // Log the data received from the API
-      if (data.results) {
-        const sunrise = new Date(data.results.sunrise);
-        const sunset = new Date(data.results.sunset);
+        const todayResponse = await fetch(`${API_BASE_URL}?lat=${lat}&lng=${lng}&date=${today}`);
+        const tomorrowResponse = await fetch(`${API_BASE_URL}?lat=${lat}&lng=${lng}&date=${tomorrow}`);
 
-        // Format the times to a readable format
-        const sunriseTime = sunrise.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-        const sunsetTime = sunset.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+        const todayData = await todayResponse.json();
+        const tomorrowData = await tomorrowResponse.json();
 
-        // Display the times on the page
-        contentContainer.innerHTML = `
-          <h2>Sunrise: ${sunriseTime}</h2>
-          <h2>Sunset: ${sunsetTime}</h2>
-        `;
-      } else {
-        showError("Unable to fetch sunrise and sunset times.");
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching sunrise and sunset data:", error);
-      contentContainer.innerHTML = "<p>Unable to retrieve data. Please try again later.</p>";
-    });
-};
+        if (todayData.status !== 'OK' || tomorrowData.status !== 'OK') {
+            throw new Error('Unable to fetch data');
+        }
 
-// Function to get user's current location
-const getLocation = () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        // Extract latitude and longitude from the position object
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
+        // Reset error display
+        errorSection.style.display = 'none';
+        document.getElementById('today-results').style.display = 'block';
+        document.getElementById('tomorrow-results').style.display = 'block';
+        document.getElementById('timezone-info').style.display = 'block';
 
-        console.log("Location found: ", latitude, longitude);  // Log latitude and longitude
+        // Update results
+        updateResultElements('today', todayData.results);
+        updateResultElements('tomorrow', tomorrowData.results);
 
-        // Fetch sunrise and sunset times using the user's location
-        fetchSunriseSunset(latitude, longitude);
-      },
-      (error) => {
-        console.error("Location error: ", error);  // Log error if geolocation fails
-        showError("Unable to get your location. Please enable location services.");
-        contentContainer.innerHTML = "<p>Unable to get your location.</p>";
-      }
-    );
-  } else {
-    console.error("Geolocation not supported in this browser.");
-    showError("Geolocation is not supported by this browser.");
-    contentContainer.innerHTML = "<p>Geolocation is not supported by this browser.</p>";
-  }
-};
+        // Update timezone
+        document.getElementById('timezone-display').textContent = todayData.results.timezone;
+    } catch (error) {
+        displayError('Error fetching sunrise/sunset data. Please try again.');
+        console.error('Error:', error);
+    }
+}
 
-// Event listener for "Find My Location" button
-findMyLocationBtn.addEventListener("click", getLocation);
+// Event listener for location dropdown
+locationDropdown.addEventListener('change', (e) => {
+    const [lat, lng] = e.target.value.split(',');
+    if (lat && lng) {
+        fetchSunriseSunsetData(lat, lng);
+    }
+});
 
-// Event listener for "Search" button (optional if you want to add city-based search)
-searchButton.addEventListener("click", () => {
-  const cityName = searchField.value.trim();
-  if (cityName) {
-    // You can implement a city geocoding API here to get lat/lon for the city
-    showError("City search functionality is not yet implemented.");
-  } else {
-    showError("Please enter a city name.");
-  }
+// Event listener for current location
+currentLocationBtn.addEventListener('click', () => {
+    if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                fetchSunriseSunsetData(latitude, longitude);
+            },
+            (error) => {
+                displayError('Unable to retrieve your location. Please select a location from the dropdown.');
+                console.error('Geolocation error:', error);
+            }
+        );
+    } else {
+        displayError('Geolocation is not supported by your browser.');
+    }
 });
