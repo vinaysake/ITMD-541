@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorModal = document.getElementById('error-modal');
     const errorMessage = document.getElementById('error-message');
     const closeError = document.querySelector('.close');
+    const loadingOverlay = document.getElementById('loading');
 
-    // Location mapping for background and class names
     const locationMap = {
         '40.7128,-74.0060': 'new-york',
         '34.0522,-118.2437': 'los-angeles',
@@ -18,26 +18,34 @@ document.addEventListener('DOMContentLoaded', () => {
         '37.7749,-122.4194': 'san-francisco',
         '39.1031,-84.5120': 'cincinnati',
         '42.3601,-71.0589': 'boston',
-        '47.6062,-122.3321': 'seattle'
+        '47.6062,-122.3321': 'seattle',
+        '25.7617,-80.1918': 'miami',
+        '39.9526,-75.1652': 'philadelphia'
     };
 
-    // Error handling function
+    function showLoading() {
+        loadingOverlay.style.display = 'flex';
+    }
+
+    function hideLoading() {
+        loadingOverlay.style.display = 'none';
+    }
+
     function showError(message) {
         errorMessage.textContent = message;
         errorModal.style.display = 'block';
     }
 
-    // Close error modal
     closeError.onclick = () => {
         errorModal.style.display = 'none';
     }
 
-    // Function to fetch sunrise/sunset data
     async function fetchSunriseSunsetData(latitude, longitude) {
         const today = new Date().toISOString().split('T')[0];
         const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
         try {
+            showLoading();
             const todayResponse = await fetch(`https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&date=${today}&timezone=UTC`);
             const tomorrowResponse = await fetch(`https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&date=${tomorrow}&timezone=UTC`);
 
@@ -51,52 +59,52 @@ document.addEventListener('DOMContentLoaded', () => {
             displayResults(todayData.results, tomorrowData.results, latitude, longitude);
         } catch (error) {
             showError('Error fetching sunrise/sunset data: ' + error.message);
+        } finally {
+            hideLoading();
         }
     }
 
-    // Display results
     function displayResults(todayResults, tomorrowResults, lat, lng) {
-        // Reset background
         document.body.className = '';
-
-        // Set location-specific background
         const locationKey = `${lat},${lng}`;
         const locationClass = locationMap[locationKey];
 
-        // Safely add class only if it exists
         if (locationClass) {
             document.body.classList.add(locationClass);
         }
 
         resultsContainer.innerHTML = `
             <div class="result-card">
-                <h3>Today's Details</h3>
-                <p><strong>Sunrise:</strong> ${todayResults.sunrise}</p>
-                <p><strong>Sunset:</strong> ${todayResults.sunset}</p>
-                <p><strong>Dawn:</strong> ${todayResults.dawn}</p>
-                <p><strong>Dusk:</strong> ${todayResults.dusk}</p>
-                <p><strong>Day Length:</strong> ${todayResults.day_length}</p>
-                <p><strong>Solar Noon:</strong> ${todayResults.solar_noon}</p>
+                <h3><i class="fas fa-sunrise"></i> Today's Sunrise</h3>
+                <p>${todayResults.sunrise}</p>
             </div>
             <div class="result-card">
-                <h3>Tomorrow's Details</h3>
-                <p><strong>Sunrise:</strong> ${tomorrowResults.sunrise}</p>
-                <p><strong>Sunset:</strong> ${tomorrowResults.sunset}</p>
-                <p><strong>Dawn:</strong> ${tomorrowResults.dawn}</p>
-                <p><strong>Dusk:</strong> ${tomorrowResults.dusk}</p>
-                <p><strong>Day Length:</strong> ${tomorrowResults.day_length}</p>
-                <p><strong>Solar Noon:</strong> ${tomorrowResults.solar_noon}</p>
+                <h3><i class="fas fa-sunset"></i> Today's Sunset</h3>
+                <p>${todayResults.sunset}</p>
             </div>
             <div class="result-card">
-                <h3>Location Information</h3>
-                <p><strong>Latitude:</strong> ${lat}</p>
-                <p><strong>Longitude:</strong> ${lng}</p>
-                <p><strong>Time Zone:</strong> UTC</p>
+                <h3><i class="fas fa-moon"></i> Today's Dawn</h3>
+                <p>${todayResults.dawn}</p>
+            </div>
+            <div class="result-card">
+                <h3><i class="fas fa-cloud-sun"></i> Today's Dusk</h3>
+                <p>${todayResults.dusk}</p>
+            </div>
+            <div class="result-card">
+                <h3><i class="fas fa-clock"></i> Today's Day Length</h3>
+                <p>${todayResults.day_length}</p>
+            </div>
+            <div class="result-card">
+                <h3><i class="fas fa-sun"></i> Today's Solar Noon</h3>
+                <p>${todayResults.solar_noon}</p>
+            </div>
+            <div class="result-card">
+                <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+                <p>Latitude: ${lat}<br>Longitude: ${lng}<br>Timezone: UTC</p>
             </div>
         `;
     }
 
-    // Location select event
     locationSelect.addEventListener('change', (e) => {
         if (e.target.value) {
             const [latitude, longitude] = e.target.value.split(',');
@@ -104,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Current location button
     currentLocationBtn.addEventListener('click', () => {
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition((position) => {

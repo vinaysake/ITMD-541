@@ -3,39 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunrise Sunset Dashboard</title>
+    <title>Sunrise Sunset Explorer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Sunrise Sunset Explorer</h1>
-            <p>Powered by Sunrise Sunset API (https://sunrisesunset.io/api/)</p>
+            <p>Data Powered by <a href="https://sunrisesunset.io/api/" target="_blank">Sunrise Sunset API</a></p>
         </header>
 
         <main>
             <section class="location-selector">
-                <label for="location-select">Select Location:</label>
-                <select id="location-select">
-                    <option value="">Choose a Location</option>
-                    <option value="40.7128,-74.0060">New York, NY</option>
-                    <option value="34.0522,-118.2437">Los Angeles, CA</option>
-                    <option value="41.8781,-87.6298">Chicago, IL</option>
-                    <option value="29.7604,-95.3698">Houston, TX</option>
-                    <option value="33.4484,-112.0740">Phoenix, AZ</option>
-                    <option value="29.4241,-98.4936">San Antonio, TX</option>
-                    <option value="32.7767,-96.7970">Dallas, TX</option>
-                    <option value="37.7749,-122.4194">San Francisco, CA</option>
-                    <option value="39.1031,-84.5120">Cincinnati, OH</option>
-                    <option value="42.3601,-71.0589">Boston, MA</option>
-                    <option value="47.6062,-122.3321">Seattle, WA</option>
-                </select>
+                <div class="input-group">
+                    <label for="location-select">Select Location:</label>
+                    <select id="location-select">
+                        <option value="">Choose a Location</option>
+                        <option value="40.7128,-74.0060">New York, NY</option>
+                        <option value="34.0522,-118.2437">Los Angeles, CA</option>
+                        <option value="41.8781,-87.6298">Chicago, IL</option>
+                        <option value="29.7604,-95.3698">Houston, TX</option>
+                        <option value="33.4484,-112.0740">Phoenix, AZ</option>
+                        <option value="29.4241,-98.4936">San Antonio, TX</option>
+                        <option value="32.7767,-96.7970">Dallas, TX</option>
+                        <option value="37.7749,-122.4194">San Francisco, CA</option>
+                        <option value="39.1031,-84.5120">Cincinnati, OH</option>
+                        <option value="42.3601,-71.0589">Boston, MA</option>
+                        <option value="47.6062,-122.3321">Seattle, WA</option>
+                        <option value="25.7617,-80.1918">Miami, FL</option>
+                        <option value="39.9526,-75.1652">Philadelphia, PA</option>
+                    </select>
+                </div>
                 
-                <button id="current-location-btn">Use Current Location</button>
+                <div class="input-group">
+                    <button id="current-location-btn">
+                        <i class="fas fa-map-marker-alt"></i> Use Current Location
+                    </button>
+                </div>
             </section>
 
             <section id="results" class="results-container">
                 <div class="placeholder">
+                    <i class="fas fa-sun"></i>
                     <p>Select a location to view sunrise and sunset times</p>
                 </div>
             </section>
@@ -47,6 +57,10 @@
             <span class="close">&times;</span>
             <p id="error-message"></p>
         </div>
+    </div>
+
+    <div id="loading" class="loading-overlay">
+        <div class="spinner"></div>
     </div>
 
     <script src="script.js"></script>
